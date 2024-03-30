@@ -1,0 +1,55 @@
+﻿using QuanLyPhongKhamNhaKhoa.Models;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Data.SqlClient;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace QuanLyPhongKhamNhaKhoa.User_Control
+{
+    public partial class UC_NhanVien : UserControl
+    {
+        public UC_NhanVien()
+        {
+            InitializeComponent();
+        }
+        User user = new User();
+        private void label4_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void UC_NhanVien_Load(object sender, EventArgs e)
+        {
+            this.userTableAdapter.Fill(this.dentalClinicDataSetDSNV.User);
+            SqlCommand cmd = new SqlCommand("Select userID, fullName, birthDate, gender, personalID, phoneNumber, address, isDoctor from [User]");
+            fillDataGrid(cmd);
+
+        }
+        public void fillDataGrid(SqlCommand cmd)
+        {
+            dataUser.ReadOnly = true;
+            dataUser.RowTemplate.Height = 50;
+            dataUser.DataSource = user.getUser(cmd);
+            dataUser.AllowUserToAddRows = false;
+
+        }
+
+
+    }
+}

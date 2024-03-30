@@ -1,0 +1,15 @@
+D:\SPKT\NAM3\HK2\Win Form\Project\QuanLyPhongKhamNhaKhoa\QuanLyPhongKhamNhaKhoa\bin\Debug\QuanLyPhongKhamNhaKhoa.exe.config
+D:\SPKT\NAM3\HK2\Win Form\Project\QuanLyPhongKhamNhaKhoa\QuanLyPhongKhamNhaKhoa\bin\Debug\QuanLyPhongKhamNhaKhoa.exe
+D:\SPKT\NAM3\HK2\Win Form\Project\QuanLyPhongKhamNhaKhoa\QuanLyPhongKhamNhaKhoa\bin\Debug\QuanLyPhongKhamNhaKhoa.pdb
+D:\SPKT\NAM3\HK2\Win Form\Project\QuanLyPhongKhamNhaKhoa\QuanLyPhongKhamNhaKhoa\bin\Debug\Guna.UI2.dll
+D:\SPKT\NAM3\HK2\Win Form\Project\QuanLyPhongKhamNhaKhoa\QuanLyPhongKhamNhaKhoa\obj\Debug\QuanLyPhongKhamNhaKhoa.csproj.AssemblyReference.cache
+D:\SPKT\NAM3\HK2\Win Form\Project\QuanLyPhongKhamNhaKhoa\QuanLyPhongKhamNhaKhoa\obj\Debug\QuanLyPhongKhamNhaKhoa.MainForm.resources
+D:\SPKT\NAM3\HK2\Win Form\Project\QuanLyPhongKhamNhaKhoa\QuanLyPhongKhamNhaKhoa\obj\Debug\QuanLyPhongKhamNhaKhoa.Properties.Resources.resources
+D:\SPKT\NAM3\HK2\Win Form\Project\QuanLyPhongKhamNhaKhoa\QuanLyPhongKhamNhaKhoa\obj\Debug\QuanLyPhongKhamNhaKhoa.csproj.GenerateResource.cache
+D:\SPKT\NAM3\HK2\Win Form\Project\QuanLyPhongKhamNhaKhoa\QuanLyPhongKhamNhaKhoa\obj\Debug\QuanLyPhongKhamNhaKhoa.csproj.CoreCompileInputs.cache
+D:\SPKT\NAM3\HK2\Win Form\Project\QuanLyPhongKhamNhaKhoa\QuanLyPhongKhamNhaKhoa\obj\Debug\QuanLyPhongKhamNhaKhoa.exe
+D:\SPKT\NAM3\HK2\Win Form\Project\QuanLyPhongKhamNhaKhoa\QuanLyPhongKhamNhaKhoa\obj\Debug\QuanLyPhongKhamNhaKhoa.pdb
+D:\SPKT\NAM3\HK2\Win Form\Project\QuanLyPhongKhamNhaKhoa\QuanLyPhongKhamNhaKhoa\obj\Debug\QuanLyPhongKhamNhaKhoa.User_Control.UC_NhanVien.resources
+D:\SPKT\NAM3\HK2\Win Form\Project\QuanLyPhongKhamNhaKhoa\QuanLyPhongKhamNhaKhoa\obj\Debug\QuanLyPhongKhamNhaKhoa.User_Control.UC_BenhNhan.resources
+D:\SPKT\NAM3\HK2\Win Form\Project\QuanLyPhongKhamNhaKhoa\QuanLyPhongKhamNhaKhoa\obj\Debug\QuanLyPh.FB0DFAC5.Up2Date
+D:\SPKT\NAM3\HK2\Win Form\Project\QuanLyPhongKhamNhaKhoa\QuanLyPhongKhamNhaKhoa\obj\Debug\QuanLyPhongKhamNhaKhoa.User_Control.UC_LichHen.resources
