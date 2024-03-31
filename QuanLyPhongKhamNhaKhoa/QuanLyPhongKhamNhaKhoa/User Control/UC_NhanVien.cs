@@ -18,13 +18,13 @@ namespace QuanLyPhongKhamNhaKhoa.User_Control
         {
             InitializeComponent();
         }
-        User user = new User();
+
 
         private void UC_NhanVien_Load(object sender, EventArgs e)
         {
-            this.userTableAdapter.Fill(this.dentalClinicDataSetDSNV.User);
+            /*this.userTableAdapter.Fill(this.dentalClinicDataSetDSNV.User);
             SqlCommand cmd = new SqlCommand("Select userID, fullName, birthDate, gender, personalID, phoneNumber, address, isDoctor from [User]");
-            fillDataGrid(cmd);
+            fillDataGrid(cmd);*/
 
         }
         public void fillDataGrid(SqlCommand cmd)
@@ -33,7 +33,6 @@ namespace QuanLyPhongKhamNhaKhoa.User_Control
             dataUser.RowTemplate.Height = 50;
             dataUser.DataSource = user.getUser(cmd);
             dataUser.AllowUserToAddRows = false;
-
         }
 
 
