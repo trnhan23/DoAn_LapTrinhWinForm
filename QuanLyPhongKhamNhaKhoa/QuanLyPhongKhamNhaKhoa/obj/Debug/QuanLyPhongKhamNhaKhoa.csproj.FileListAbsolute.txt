@@ -13,3 +13,19 @@ D:\SPKT\NAM3\HK2\Win Form\Project\QuanLyPhongKhamNhaKhoa\QuanLyPhongKhamNhaKhoa\
 D:\SPKT\NAM3\HK2\Win Form\Project\QuanLyPhongKhamNhaKhoa\QuanLyPhongKhamNhaKhoa\obj\Debug\QuanLyPhongKhamNhaKhoa.User_Control.UC_BenhNhan.resources
 D:\SPKT\NAM3\HK2\Win Form\Project\QuanLyPhongKhamNhaKhoa\QuanLyPhongKhamNhaKhoa\obj\Debug\QuanLyPh.FB0DFAC5.Up2Date
 D:\SPKT\NAM3\HK2\Win Form\Project\QuanLyPhongKhamNhaKhoa\QuanLyPhongKhamNhaKhoa\obj\Debug\QuanLyPhongKhamNhaKhoa.User_Control.UC_LichHen.resources
+E:\SPKT\NAM3_HK2\WinForm\Project\QuanLyPhongKhamNhaKhoa\QuanLyPhongKhamNhaKhoa\bin\Debug\QuanLyPhongKhamNhaKhoa.exe.config
+E:\SPKT\NAM3_HK2\WinForm\Project\QuanLyPhongKhamNhaKhoa\QuanLyPhongKhamNhaKhoa\bin\Debug\QuanLyPhongKhamNhaKhoa.exe
+E:\SPKT\NAM3_HK2\WinForm\Project\QuanLyPhongKhamNhaKhoa\QuanLyPhongKhamNhaKhoa\bin\Debug\QuanLyPhongKhamNhaKhoa.pdb
+E:\SPKT\NAM3_HK2\WinForm\Project\QuanLyPhongKhamNhaKhoa\QuanLyPhongKhamNhaKhoa\bin\Debug\Guna.UI2.dll
+E:\SPKT\NAM3_HK2\WinForm\Project\QuanLyPhongKhamNhaKhoa\QuanLyPhongKhamNhaKhoa\obj\Debug\QuanLyPhongKhamNhaKhoa.csproj.AssemblyReference.cache
+E:\SPKT\NAM3_HK2\WinForm\Project\QuanLyPhongKhamNhaKhoa\QuanLyPhongKhamNhaKhoa\obj\Debug\QuanLyPhongKhamNhaKhoa.csproj.SuggestedBindingRedirects.cache
+E:\SPKT\NAM3_HK2\WinForm\Project\QuanLyPhongKhamNhaKhoa\QuanLyPhongKhamNhaKhoa\obj\Debug\QuanLyPhongKhamNhaKhoa.MainForm.resources
+E:\SPKT\NAM3_HK2\WinForm\Project\QuanLyPhongKhamNhaKhoa\QuanLyPhongKhamNhaKhoa\obj\Debug\QuanLyPhongKhamNhaKhoa.Properties.Resources.resources
+E:\SPKT\NAM3_HK2\WinForm\Project\QuanLyPhongKhamNhaKhoa\QuanLyPhongKhamNhaKhoa\obj\Debug\QuanLyPhongKhamNhaKhoa.User_Control.UC_BenhNhan.resources
+E:\SPKT\NAM3_HK2\WinForm\Project\QuanLyPhongKhamNhaKhoa\QuanLyPhongKhamNhaKhoa\obj\Debug\QuanLyPhongKhamNhaKhoa.User_Control.UC_LichHen.resources
+E:\SPKT\NAM3_HK2\WinForm\Project\QuanLyPhongKhamNhaKhoa\QuanLyPhongKhamNhaKhoa\obj\Debug\QuanLyPhongKhamNhaKhoa.User_Control.UC_NhanVien.resources
+E:\SPKT\NAM3_HK2\WinForm\Project\QuanLyPhongKhamNhaKhoa\QuanLyPhongKhamNhaKhoa\obj\Debug\QuanLyPhongKhamNhaKhoa.csproj.GenerateResource.cache
+E:\SPKT\NAM3_HK2\WinForm\Project\QuanLyPhongKhamNhaKhoa\QuanLyPhongKhamNhaKhoa\obj\Debug\QuanLyPhongKhamNhaKhoa.csproj.CoreCompileInputs.cache
+E:\SPKT\NAM3_HK2\WinForm\Project\QuanLyPhongKhamNhaKhoa\QuanLyPhongKhamNhaKhoa\obj\Debug\QuanLyPhongKhamNhaKhoa.csproj.CopyComplete
+E:\SPKT\NAM3_HK2\WinForm\Project\QuanLyPhongKhamNhaKhoa\QuanLyPhongKhamNhaKhoa\obj\Debug\QuanLyPhongKhamNhaKhoa.exe
+E:\SPKT\NAM3_HK2\WinForm\Project\QuanLyPhongKhamNhaKhoa\QuanLyPhongKhamNhaKhoa\obj\Debug\QuanLyPhongKhamNhaKhoa.pdb

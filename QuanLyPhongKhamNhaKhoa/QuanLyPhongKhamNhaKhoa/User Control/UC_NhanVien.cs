@@ -19,20 +19,6 @@ namespace QuanLyPhongKhamNhaKhoa.User_Control
             InitializeComponent();
         }
         User user = new User();
-        private void label4_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
 
         private void UC_NhanVien_Load(object sender, EventArgs e)
         {
