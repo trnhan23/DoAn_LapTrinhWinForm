@@ -31,8 +31,6 @@
             this.components = new System.ComponentModel.Container();
             this.label1 = new System.Windows.Forms.Label();
             this.dataUser = new System.Windows.Forms.DataGridView();
-            this.userBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.dentalClinicDataSetDSNV = new QuanLyPhongKhamNhaKhoa.DentalClinicDataSetDSNV();
             this.guna2Elipse1 = new Guna.UI2.WinForms.Guna2Elipse(this.components);
             this.label2 = new System.Windows.Forms.Label();
             this.txtMaNV = new System.Windows.Forms.TextBox();
@@ -59,10 +57,20 @@
             this.txtTimKiem = new System.Windows.Forms.TextBox();
             this.btnTimKiem = new System.Windows.Forms.Button();
             this.btnXuatDuLieu = new System.Windows.Forms.Button();
-            this.userTableAdapter = new QuanLyPhongKhamNhaKhoa.DentalClinicDataSetDSNVTableAdapters.UserTableAdapter();
+            this.qLNhaKhoaDataSet_User = new QuanLyPhongKhamNhaKhoa.QLNhaKhoaDataSet_User();
+            this.usersBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.usersTableAdapter = new QuanLyPhongKhamNhaKhoa.QLNhaKhoaDataSet_UserTableAdapters.UsersTableAdapter();
+            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.persionalIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.isDoctorDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataUser)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.userBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dentalClinicDataSetDSNV)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.qLNhaKhoaDataSet_User)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.usersBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -78,25 +86,27 @@
             // 
             // dataUser
             // 
+            this.dataUser.AutoGenerateColumns = false;
+            this.dataUser.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataUser.BackgroundColor = System.Drawing.Color.White;
             this.dataUser.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.dataUser.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataUser.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dataGridViewTextBoxColumn1,
+            this.dataGridViewTextBoxColumn2,
+            this.dataGridViewTextBoxColumn3,
+            this.dataGridViewTextBoxColumn4,
+            this.persionalIDDataGridViewTextBoxColumn,
+            this.dataGridViewTextBoxColumn5,
+            this.dataGridViewTextBoxColumn6,
+            this.isDoctorDataGridViewCheckBoxColumn});
+            this.dataUser.DataSource = this.usersBindingSource;
             this.dataUser.Location = new System.Drawing.Point(46, 403);
             this.dataUser.Name = "dataUser";
             this.dataUser.RowHeadersWidth = 51;
             this.dataUser.RowTemplate.Height = 24;
             this.dataUser.Size = new System.Drawing.Size(1469, 354);
             this.dataUser.TabIndex = 1;
-            // 
-            // userBindingSource
-            // 
-            this.userBindingSource.DataMember = "User";
-            this.userBindingSource.DataSource = this.dentalClinicDataSetDSNV;
-            // 
-            // dentalClinicDataSetDSNV
-            // 
-            this.dentalClinicDataSetDSNV.DataSetName = "DentalClinicDataSetDSNV";
-            this.dentalClinicDataSetDSNV.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // guna2Elipse1
             // 
@@ -128,9 +138,9 @@
             this.label3.ForeColor = System.Drawing.Color.SteelBlue;
             this.label3.Location = new System.Drawing.Point(53, 130);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(79, 16);
+            this.label3.Size = new System.Drawing.Size(83, 16);
             this.label3.TabIndex = 2;
-            this.label3.Text = "Họ và Tên";
+            this.label3.Text = "Họ và Tên:";
             // 
             // txtHoTen
             // 
@@ -307,6 +317,7 @@
             this.btnThemNV.TabIndex = 7;
             this.btnThemNV.Text = "Thêm nhân viên";
             this.btnThemNV.UseVisualStyleBackColor = false;
+            this.btnThemNV.Click += new System.EventHandler(this.btnThemNV_Click);
             // 
             // btnXoaNV
             // 
@@ -364,9 +375,75 @@
             this.btnXuatDuLieu.Text = "Xuất dữ liệu";
             this.btnXuatDuLieu.UseVisualStyleBackColor = false;
             // 
-            // userTableAdapter
+            // qLNhaKhoaDataSet_User
             // 
-            this.userTableAdapter.ClearBeforeFill = true;
+            this.qLNhaKhoaDataSet_User.DataSetName = "QLNhaKhoaDataSet_User";
+            this.qLNhaKhoaDataSet_User.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // usersBindingSource
+            // 
+            this.usersBindingSource.DataMember = "Users";
+            this.usersBindingSource.DataSource = this.qLNhaKhoaDataSet_User;
+            // 
+            // usersTableAdapter
+            // 
+            this.usersTableAdapter.ClearBeforeFill = true;
+            // 
+            // dataGridViewTextBoxColumn1
+            // 
+            this.dataGridViewTextBoxColumn1.DataPropertyName = "userID";
+            this.dataGridViewTextBoxColumn1.HeaderText = "Mã nhân viên";
+            this.dataGridViewTextBoxColumn1.MinimumWidth = 6;
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            // 
+            // dataGridViewTextBoxColumn2
+            // 
+            this.dataGridViewTextBoxColumn2.DataPropertyName = "fullName";
+            this.dataGridViewTextBoxColumn2.HeaderText = "Họ tên";
+            this.dataGridViewTextBoxColumn2.MinimumWidth = 6;
+            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            // 
+            // dataGridViewTextBoxColumn3
+            // 
+            this.dataGridViewTextBoxColumn3.DataPropertyName = "birthDate";
+            this.dataGridViewTextBoxColumn3.HeaderText = "Ngày sinh";
+            this.dataGridViewTextBoxColumn3.MinimumWidth = 6;
+            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
+            // 
+            // dataGridViewTextBoxColumn4
+            // 
+            this.dataGridViewTextBoxColumn4.DataPropertyName = "gender";
+            this.dataGridViewTextBoxColumn4.HeaderText = "Giới tính";
+            this.dataGridViewTextBoxColumn4.MinimumWidth = 6;
+            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
+            // 
+            // persionalIDDataGridViewTextBoxColumn
+            // 
+            this.persionalIDDataGridViewTextBoxColumn.DataPropertyName = "persionalID";
+            this.persionalIDDataGridViewTextBoxColumn.HeaderText = "CCCD";
+            this.persionalIDDataGridViewTextBoxColumn.MinimumWidth = 6;
+            this.persionalIDDataGridViewTextBoxColumn.Name = "persionalIDDataGridViewTextBoxColumn";
+            // 
+            // dataGridViewTextBoxColumn5
+            // 
+            this.dataGridViewTextBoxColumn5.DataPropertyName = "phoneNumber";
+            this.dataGridViewTextBoxColumn5.HeaderText = "Số điện thoại";
+            this.dataGridViewTextBoxColumn5.MinimumWidth = 6;
+            this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
+            // 
+            // dataGridViewTextBoxColumn6
+            // 
+            this.dataGridViewTextBoxColumn6.DataPropertyName = "address";
+            this.dataGridViewTextBoxColumn6.HeaderText = "Địa chỉ";
+            this.dataGridViewTextBoxColumn6.MinimumWidth = 6;
+            this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
+            // 
+            // isDoctorDataGridViewCheckBoxColumn
+            // 
+            this.isDoctorDataGridViewCheckBoxColumn.DataPropertyName = "isDoctor";
+            this.isDoctorDataGridViewCheckBoxColumn.HeaderText = "isDoctor";
+            this.isDoctorDataGridViewCheckBoxColumn.MinimumWidth = 6;
+            this.isDoctorDataGridViewCheckBoxColumn.Name = "isDoctorDataGridViewCheckBoxColumn";
             // 
             // UC_NhanVien
             // 
@@ -403,8 +480,8 @@
             this.Size = new System.Drawing.Size(1564, 818);
             this.Load += new System.EventHandler(this.UC_NhanVien_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataUser)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.userBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dentalClinicDataSetDSNV)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.qLNhaKhoaDataSet_User)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.usersBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -447,8 +524,16 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn personalIDDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn phoneNumberDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn addressDataGridViewTextBoxColumn;
-        private System.Windows.Forms.BindingSource userBindingSource;
-        private DentalClinicDataSetDSNV dentalClinicDataSetDSNV;
-        private DentalClinicDataSetDSNVTableAdapters.UserTableAdapter userTableAdapter;
+        private System.Windows.Forms.BindingSource usersBindingSource;
+        private QLNhaKhoaDataSet_User qLNhaKhoaDataSet_User;
+        private QLNhaKhoaDataSet_UserTableAdapters.UsersTableAdapter usersTableAdapter;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
+        private System.Windows.Forms.DataGridViewTextBoxColumn persionalIDDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn6;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn isDoctorDataGridViewCheckBoxColumn;
     }
 }

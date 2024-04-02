@@ -10,7 +10,7 @@ namespace QuanLyPhongKhamNhaKhoa
 {
     internal class SQLConnectionData
     {
-        SqlConnection con = new SqlConnection(@"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=DentalClinic;Integrated Security=True;Encrypt=False");
+        SqlConnection con = new SqlConnection(@"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=QLNhaKhoa;Integrated Security=True");
         
         // get the connection
         public SqlConnection getConnection

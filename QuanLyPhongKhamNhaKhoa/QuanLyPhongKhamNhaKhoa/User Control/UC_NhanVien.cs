@@ -1,4 +1,5 @@
-﻿using QuanLyPhongKhamNhaKhoa.Models;
+﻿
+using QuanLyPhongKhamNhaKhoa.Dao;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -19,22 +20,42 @@ namespace QuanLyPhongKhamNhaKhoa.User_Control
             InitializeComponent();
         }
 
+        UserDao user = new UserDao();
+
 
         private void UC_NhanVien_Load(object sender, EventArgs e)
         {
-            /*this.userTableAdapter.Fill(this.dentalClinicDataSetDSNV.User);
-            SqlCommand cmd = new SqlCommand("Select userID, fullName, birthDate, gender, personalID, phoneNumber, address, isDoctor from [User]");
-            fillDataGrid(cmd);*/
-
+            SqlCommand command = new SqlCommand("SELECT * FROM Users");
+            fillGrid(command);
         }
-        public void fillDataGrid(SqlCommand cmd)
+
+
+        private void fillGrid(SqlCommand command)
         {
-            dataUser.ReadOnly = true;
-            dataUser.RowTemplate.Height = 50;
-            dataUser.DataSource = user.getUser(cmd);
-            dataUser.AllowUserToAddRows = false;
+            try
+            {
+                this.usersTableAdapter.Fill(this.qLNhaKhoaDataSet_User.Users);
+                dataUser.ReadOnly = true;
+                dataUser.DataSource = user.getUsers(command);
+                dataUser.AllowUserToAddRows = false;
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
-
+        private void btnThemNV_Click(object sender, EventArgs e)
+        {
+            string userID = txtMaNV.Text.Trim();
+            string fullName = txtHoTen.Text.Trim();
+            DateTime birthDate = dateTimePickerNgSinh.Value;
+            string gender = "Male";
+            if (rbFemale.Checked)
+            {
+                gender = "Female";
+            }
+        }
     }
 }

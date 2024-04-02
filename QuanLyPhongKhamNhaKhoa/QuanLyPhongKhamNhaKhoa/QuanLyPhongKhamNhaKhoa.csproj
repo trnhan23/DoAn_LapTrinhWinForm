@@ -52,13 +52,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Dao\AppointmentDao.cs" />
+    <Compile Include="Dao\BillDao.cs" />
+    <Compile Include="Dao\MedicineDao.cs" />
     <Compile Include="Dao\PatientsDao.cs" />
     <Compile Include="Dao\UserDao.cs" />
-    <Compile Include="DentalClinicDataSetDSNV.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>DentalClinicDataSetDSNV.xsd</DependentUpon>
-    </Compile>
     <Compile Include="Entity\Appointment.cs" />
     <Compile Include="Entity\Bill.cs" />
     <Compile Include="Entity\Medicine.cs" />
@@ -76,6 +74,11 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="QLNhaKhoaDataSet_User.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>QLNhaKhoaDataSet_User.xsd</DependentUpon>
+    </Compile>
     <Compile Include="SQLConnectionData.cs" />
     <Compile Include="User Control\UC_BenhNhan.cs">
       <SubType>UserControl</SubType>
@@ -116,17 +119,6 @@
     <EmbeddedResource Include="User Control\UC_NhanVien.resx">
       <DependentUpon>UC_NhanVien.cs</DependentUpon>
     </EmbeddedResource>
-    <None Include="DentalClinicDataSetDSNV.xsc">
-      <DependentUpon>DentalClinicDataSetDSNV.xsd</DependentUpon>
-    </None>
-    <None Include="DentalClinicDataSetDSNV.xsd">
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>DentalClinicDataSetDSNV.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="DentalClinicDataSetDSNV.xss">
-      <DependentUpon>DentalClinicDataSetDSNV.xsd</DependentUpon>
-    </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -137,6 +129,17 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <None Include="QLNhaKhoaDataSet_User.xsc">
+      <DependentUpon>QLNhaKhoaDataSet_User.xsd</DependentUpon>
+    </None>
+    <None Include="QLNhaKhoaDataSet_User.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>QLNhaKhoaDataSet_User.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="QLNhaKhoaDataSet_User.xss">
+      <DependentUpon>QLNhaKhoaDataSet_User.xsd</DependentUpon>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
