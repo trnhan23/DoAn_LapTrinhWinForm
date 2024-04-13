@@ -74,11 +74,6 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="QLNhaKhoaDataSet_User.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>QLNhaKhoaDataSet_User.xsd</DependentUpon>
-    </Compile>
     <Compile Include="SQLConnectionData.cs" />
     <Compile Include="User Control\UC_BenhNhan.cs">
       <SubType>UserControl</SubType>
@@ -129,17 +124,6 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <None Include="QLNhaKhoaDataSet_User.xsc">
-      <DependentUpon>QLNhaKhoaDataSet_User.xsd</DependentUpon>
-    </None>
-    <None Include="QLNhaKhoaDataSet_User.xsd">
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>QLNhaKhoaDataSet_User.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="QLNhaKhoaDataSet_User.xss">
-      <DependentUpon>QLNhaKhoaDataSet_User.xsd</DependentUpon>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

@@ -1,18 +1,147 @@
 ﻿using QuanLyPhongKhamNhaKhoa.Entity;
-using System;
-using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Data;
+using System;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace QuanLyPhongKhamNhaKhoa.Dao
 {
     internal class UserDao
     {
         SQLConnectionData mydb = new SQLConnectionData();
+        private Random random = new Random();
 
+        public string taoPassword()
+        {
+            const string upperChars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+            const string lowerChars = "abcdefghijklmnopqrstuvwxyz";
+            const string specialChars = "!@#$%^&*()-_=+";
+            const string chars = "0123456789";
+
+            char specialChar = specialChars[random.Next(specialChars.Length)];
+
+            char upperChar = upperChars[random.Next(upperChars.Length)];
+
+            char lowerChar1 = lowerChars[random.Next(lowerChars.Length)];
+            char lowerChar2 = lowerChars[random.Next(lowerChars.Length)];
+
+            string randomPart = new string(Enumerable.Repeat(chars, 6).Select(s => s[random.Next(s.Length)]).ToArray());
+
+            string password = $"{specialChar}{upperChar}{lowerChar1}{lowerChar2}{randomPart}";
+            password = new string(password.ToCharArray().OrderBy(x => random.Next()).ToArray());
+
+            return password;
+        }
+
+        public string taoMaUsers(string chucVu)
+        {
+            const string chars = "0123456789";
+            string result;
+            do
+            {
+                string randomPart = new string(Enumerable.Repeat(chars, 4).Select(s => s[random.Next(s.Length)]).ToArray());
+                if (chucVu.Equals("ADMIN"))
+                {
+                    result = $"ADMI{randomPart}";
+                } else if (chucVu.Equals("DENTIST"))
+                {
+                    result = $"DENT{randomPart}";
+                } else if (chucVu.Equals("ASSISTANT"))
+                {
+                    result = $"ASSI{randomPart}";
+                } else
+                {
+                    result = $"USER{randomPart}";
+                }
+            } while (existUsers(result));
+            return result;
+        }
+
+        public bool existUsers(string id)
+        {
+            try
+            {
+                mydb.openConnection();
+                SqlCommand command = new SqlCommand("SELECT * FROM Users WHERE userID = @userID", mydb.getConnection);
+                command.Parameters.Add("@userID", SqlDbType.VarChar).Value = id;
+                var result = command.ExecuteReader();
+                if (result.HasRows)
+                {
+                    mydb.closeConnection();
+                    return true;
+                }
+                mydb.closeConnection();
+                return false;
+            }
+            catch
+            {
+                return true;
+            }
+        }
+        public bool existPersionalIDUsers(string persionalID)
+        {
+            try
+            {
+                mydb.openConnection();
+                SqlCommand command = new SqlCommand("SELECT * FROM Users WHERE persionalID = @persionalID", mydb.getConnection);
+                command.Parameters.Add("@persionalID", SqlDbType.VarChar).Value = persionalID;
+                var result = command.ExecuteReader();
+                if (result.HasRows)
+                {
+                    mydb.closeConnection();
+                    return true;
+                }
+                mydb.closeConnection();
+                return false;
+            }
+            catch
+            {
+                return true;
+            }
+        }
+
+        public bool existEmailUsers(string email)
+        {
+            try
+            {
+                mydb.openConnection();
+                SqlCommand command = new SqlCommand("SELECT * FROM Users WHERE email = @email", mydb.getConnection);
+                command.Parameters.Add("@email", SqlDbType.VarChar).Value = email;
+                var result = command.ExecuteReader();
+                if (result.HasRows)
+                {
+                    mydb.closeConnection();
+                    return true;
+                }
+                mydb.closeConnection();
+                return false;
+            }
+            catch
+            {
+                return true;
+            }
+        }
+        public bool existPhoneUsers(string phone)
+        {
+            try
+            {
+                mydb.openConnection();
+                SqlCommand command = new SqlCommand("SELECT * FROM Users WHERE phone = @phone", mydb.getConnection);
+                command.Parameters.Add("@email", SqlDbType.VarChar).Value = phone;
+                var result = command.ExecuteReader();
+                if (result.HasRows)
+                {
+                    mydb.closeConnection();
+                    return true;
+                }
+                mydb.closeConnection();
+                return false;
+            }
+            catch
+            {
+                return true;
+            }
+        }
         public DataTable getUsers(SqlCommand command)
         {
             command.Connection = mydb.getConnection;
@@ -22,10 +151,10 @@ namespace QuanLyPhongKhamNhaKhoa.Dao
             return table;
         }
 
-        public bool deleteUsers(User user)
+        public bool deleteUsers(string id)
         {
             SqlCommand command = new SqlCommand("DELETE FROM Users WHERE userID = @userID", mydb.getConnection);
-            command.Parameters.Add("@userID", SqlDbType.VarChar).Value = user.UserID;
+            command.Parameters.Add("@userID", SqlDbType.VarChar).Value = id;
             mydb.openConnection();
             if ((command.ExecuteNonQuery() == 1))
             {
@@ -42,8 +171,8 @@ namespace QuanLyPhongKhamNhaKhoa.Dao
         public bool updateUsers(User user)
         {
             SqlCommand command = new SqlCommand("UPDATE Users SET fullName=@fullName, " +
-                "gender=@gender, birthDate=@birthDate, persionalID=@persionalID, phoneNumber=@phoneNumber, " +
-                "address=@address, isDoctor=@isDoctor, isAdmin=@isAdmin, password=@password " +
+                "gender=@gender, birthDate=@birthDate, persionalID=@persionalID, phoneNumber=@phoneNumber, email=@email, " +
+                "address=@address, isRole=@isRole " +
                 "WHERE userID=@userID", mydb.getConnection);
             command.Parameters.Add("@userID", SqlDbType.VarChar).Value = user.UserID;
             command.Parameters.Add("@fullName", SqlDbType.NVarChar).Value = user.FullName;
@@ -51,13 +180,11 @@ namespace QuanLyPhongKhamNhaKhoa.Dao
             command.Parameters.Add("@birthDate", SqlDbType.DateTime).Value = user.BirthDate;
             command.Parameters.Add("@persionalID", SqlDbType.VarChar).Value = user.PersionalID;
             command.Parameters.Add("@phoneNumber", SqlDbType.VarChar).Value = user.PhoneNumber;
+            command.Parameters.Add("@email", SqlDbType.VarChar).Value = user.Email;
             command.Parameters.Add("@address", SqlDbType.NVarChar).Value = user.Address;
-            command.Parameters.Add("@isDoctor", SqlDbType.Bit).Value = user.IsDoctor;
-            command.Parameters.Add("@isAdmin", SqlDbType.Bit).Value = user.IsAdmin;
-            command.Parameters.Add("@password", SqlDbType.VarChar).Value = user.Password;
+            command.Parameters.Add("@isRole", SqlDbType.NVarChar).Value = user.IsRole;
 
             mydb.openConnection();
-
             if ((command.ExecuteNonQuery() == 1))
             {
                 mydb.closeConnection();
@@ -72,19 +199,18 @@ namespace QuanLyPhongKhamNhaKhoa.Dao
 
         public bool insertUsers(User user)
         {
-            SqlCommand command = new SqlCommand("INSERT INTO Users (userID, fullName, gender, birthDate, persionalID, phoneNumber, address, isDoctor, isAdmin, password)" +
-                " VALUES (@userID,@fullName, @gender, @birthDate, @persionalID, @phoneNumber, @address, @isDoctor, @isAdmin, @password)", mydb.getConnection);
+            SqlCommand command = new SqlCommand("INSERT INTO Users (userID, fullName, gender, birthDate, persionalID, phoneNumber, email, address, isRole, password)" +
+                " VALUES (@userID,@fullName, @gender, @birthDate, @persionalID, @phoneNumber, @email, @address, @isRole, @password)", mydb.getConnection);
             command.Parameters.Add("@userID", SqlDbType.VarChar).Value = user.UserID;
             command.Parameters.Add("@fullName", SqlDbType.NVarChar).Value = user.FullName;
             command.Parameters.Add("@gender", SqlDbType.NVarChar).Value = user.Gender;
             command.Parameters.Add("@birthDate", SqlDbType.DateTime).Value = user.BirthDate;
             command.Parameters.Add("@persionalID", SqlDbType.VarChar).Value = user.PersionalID;
             command.Parameters.Add("@phoneNumber", SqlDbType.VarChar).Value = user.PhoneNumber;
+            command.Parameters.Add("@email", SqlDbType.VarChar).Value = user.Email;
             command.Parameters.Add("@address", SqlDbType.NVarChar).Value = user.Address;
-            command.Parameters.Add("@isDoctor", SqlDbType.Bit).Value = user.IsDoctor;
-            command.Parameters.Add("@isAdmin", SqlDbType.Bit).Value = user.IsAdmin;
+            command.Parameters.Add("@isRole", SqlDbType.NVarChar).Value = user.IsRole;
             command.Parameters.Add("@password", SqlDbType.VarChar).Value = user.Password;
-
 
             mydb.openConnection();
             if ((command.ExecuteNonQuery() == 1))

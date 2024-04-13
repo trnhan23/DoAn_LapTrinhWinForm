@@ -14,21 +14,38 @@ namespace QuanLyPhongKhamNhaKhoa.Entity
         private string gender;
         private string persionalID;
         private string phoneNumber;
+        private string email;
         private string address;
-        private bool isDoctor;
-        private bool isAdmin;
+        private string isRole;
         private string password;
 
-        public string UserID { get { return userID; } set { userID = value; } }
-        public string FullName { get { return fullName; } set { fullName = value; } }
-        public DateTime BirthDate { get { return birthDate; } set {birthDate = value; } }
-        public string Gender { get { return gender; } set { gender = value; } }
-        public string PersionalID { get { return persionalID; } set { persionalID = value; } }
-        public string PhoneNumber { get { return phoneNumber; } set { phoneNumber = value; } }
-        public string Address { get { return address; } set { address = value; } }
-        public bool IsDoctor { get { return isDoctor; } set {isDoctor = value; } }
-        public bool IsAdmin { get { return isAdmin; } set { isAdmin = value; } }
-        public string Password { get { return password; } set { password = value; } }
-        
+        public User(string userID, string fullName, DateTime birthDate, string gender, string persionalID, string phoneNumber, string email, string address, string isRole, string password)
+        {
+            UserID = userID;
+            FullName = fullName;
+            BirthDate = birthDate;
+            Gender = gender;
+            PersionalID = persionalID;
+            PhoneNumber = phoneNumber;
+            Email = email;
+            Address = address;
+            IsRole = isRole;
+            Password = password;
+        }
+        public string UserID { get; set; }
+        public string FullName { get; set; }
+        public DateTime BirthDate { get; set; }
+        public string Gender { get; set; }
+        public string PersionalID { get; set; }
+        public string Email { get; set; }
+        public string PhoneNumber { get; set; }
+        public string Address { get; set; }
+        public string IsRole { get; set; }
+        public string Password { get; set; }
+
+        internal void insertUsers(User user)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
