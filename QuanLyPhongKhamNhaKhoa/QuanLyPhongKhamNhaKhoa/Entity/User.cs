@@ -43,9 +43,5 @@ namespace QuanLyPhongKhamNhaKhoa.Entity
         public string IsRole { get; set; }
         public string Password { get; set; }
 
-        internal void insertUsers(User user)
-        {
-            throw new NotImplementedException();
-        }
     }
 }

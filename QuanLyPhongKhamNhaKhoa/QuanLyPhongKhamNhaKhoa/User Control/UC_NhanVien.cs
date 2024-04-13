@@ -50,7 +50,7 @@ namespace QuanLyPhongKhamNhaKhoa.User_Control
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show("ERROR: " + ex.Message, "Exception", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
         private void btnSuaNV_Click(object sender, EventArgs e)
@@ -159,13 +159,13 @@ namespace QuanLyPhongKhamNhaKhoa.User_Control
                 User user = new User(userID, fullName, birthDate, gender, persionalID, phone, email, address, chucVu, "");
                 if (userDao.updateUsers(user))
                 {
-                    MessageBox.Show("Cập nhật người dùng thành công!", "Add User", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("Cập nhật thông tin người dùng thành công!", "Add User", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     refesh();
                     reset();
                 }
                 else
                 {
-                    MessageBox.Show("Cập nhật người dùng thất bại!", "Add User", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Cập nhật thông tin người dùng thất bại!", "Add User", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
             catch (Exception ex)
@@ -185,7 +185,7 @@ namespace QuanLyPhongKhamNhaKhoa.User_Control
                 string userId = txtMaNV.Text.Trim();
                 if (userDao.existUsers(userId))
                 {
-                    MessageBox.Show("Người dùng đã tồn tại!", "Add User", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Trùng mã người dùng đã tồn tại!", "Add User", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
                 string fullName = txtHoTen.Text.Trim();

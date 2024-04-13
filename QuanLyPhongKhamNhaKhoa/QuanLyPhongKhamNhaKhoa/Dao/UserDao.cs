@@ -56,7 +56,6 @@ namespace QuanLyPhongKhamNhaKhoa.Dao
             } while (existUsers(result));
             return result;
         }
-
         public bool existUsers(string id)
         {
             try
@@ -99,7 +98,6 @@ namespace QuanLyPhongKhamNhaKhoa.Dao
                 return true;
             }
         }
-
         public bool existEmailUsers(string email)
         {
             try
