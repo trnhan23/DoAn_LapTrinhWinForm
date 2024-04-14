@@ -63,8 +63,11 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
             this.txtTimKiem = new System.Windows.Forms.TextBox();
+            this.btnChonAnh = new System.Windows.Forms.Button();
+            this.picBoxImage = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataUser)).BeginInit();
             this.panel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.picBoxImage)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -440,10 +443,35 @@
             this.txtTimKiem.TabIndex = 3;
             this.txtTimKiem.TextChanged += new System.EventHandler(this.txtTimKiem_TextChanged);
             // 
+            // btnChonAnh
+            // 
+            this.btnChonAnh.BackColor = System.Drawing.Color.SteelBlue;
+            this.btnChonAnh.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnChonAnh.ForeColor = System.Drawing.Color.White;
+            this.btnChonAnh.Location = new System.Drawing.Point(1029, 245);
+            this.btnChonAnh.Name = "btnChonAnh";
+            this.btnChonAnh.Size = new System.Drawing.Size(188, 38);
+            this.btnChonAnh.TabIndex = 43;
+            this.btnChonAnh.Text = "Chọn Ảnh";
+            this.btnChonAnh.UseVisualStyleBackColor = false;
+            this.btnChonAnh.Click += new System.EventHandler(this.btnChonAnh_Click);
+            // 
+            // picBoxImage
+            // 
+            this.picBoxImage.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.picBoxImage.Location = new System.Drawing.Point(1029, 67);
+            this.picBoxImage.Name = "picBoxImage";
+            this.picBoxImage.Size = new System.Drawing.Size(188, 172);
+            this.picBoxImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.picBoxImage.TabIndex = 42;
+            this.picBoxImage.TabStop = false;
+            // 
             // UC_NhanVien
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.btnChonAnh);
+            this.Controls.Add(this.picBoxImage);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.txtDiaChi);
             this.Controls.Add(this.label11);
@@ -480,6 +508,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataUser)).EndInit();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.picBoxImage)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -528,5 +557,7 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.TextBox txtTimKiem;
+        private System.Windows.Forms.Button btnChonAnh;
+        private System.Windows.Forms.PictureBox picBoxImage;
     }
 }

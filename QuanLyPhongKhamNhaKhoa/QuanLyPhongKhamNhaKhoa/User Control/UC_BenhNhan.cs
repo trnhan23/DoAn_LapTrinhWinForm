@@ -1,5 +1,6 @@
 ﻿using QuanLyPhongKhamNhaKhoa.Dao;
 using QuanLyPhongKhamNhaKhoa.Entity;
+using QuanLyPhongKhamNhaKhoa.Validation;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -22,7 +23,6 @@ namespace QuanLyPhongKhamNhaKhoa.User_Control
         {
             InitializeComponent();
         }
-
         private void btnChonAnh_Click(object sender, EventArgs e)
         {
             OpenFileDialog opf = new OpenFileDialog();
@@ -104,14 +104,12 @@ namespace QuanLyPhongKhamNhaKhoa.User_Control
             {
                 if (verif())
                 {
-                    MessageBox.Show("Chưa nhập dữ liệu đầy đủ!", "Input", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
+                    throw new InvalidData();
                 }
                 string patientId = txtMaBN.Text.Trim();
                 if (patientsDao.existPatients(patientId))
                 {
-                    MessageBox.Show("Trùng mã bệnh nhân đã tồn tại!", "Add User", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
+                    throw new InvalidExistPatients();
                 }
                 string fullName = txtHoTen.Text.Trim();
                 string persionalID = txtCCCD.Text.Trim();
@@ -120,30 +118,25 @@ namespace QuanLyPhongKhamNhaKhoa.User_Control
                 string address = txtDiaChi.Text.Trim();
                 if (!Regex.IsMatch(fullName, @"^[\p{L}\s]+$"))
                 {
-                    MessageBox.Show("Họ tên không hợp lệ!", "Invalid Input", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
+                    throw new InvalidName();
                 }
                 if (!Regex.IsMatch(persionalID, @"^\d{12}$"))
                 {
-                    MessageBox.Show("Số CCCD không hợp lệ!", "Invalid Input", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
+                    throw new InvalidPersionalID();
                 }
                 if (patientsDao.existPersionalIDPatients(persionalID))
                 {
-                    MessageBox.Show("Số CCCD đã tồn tại!", "Invalid Input", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
+                    throw new InvalidPersionalID(persionalID);
                 }
                 if (!Regex.IsMatch(phone, @"^0\d{9}$"))
                 {
-                    MessageBox.Show("Số điện thoại không hợp lệ!", "Invalid Input", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
+                    throw new InvalidSDT();
                 }
                 int born_year = dateTimePickerNgSinh.Value.Year;
                 int this_year = DateTime.Now.Year;
                 if (((this_year - born_year) < 3))
                 {
-                    MessageBox.Show("Bệnh nhân không đủ tuổi để khám! (<3)", "Invalid Input", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
+                    throw new InvalidBirthdate(3);
                 }
                 DateTime birthDate = dateTimePickerNgSinh.Value;
 
@@ -167,12 +160,12 @@ namespace QuanLyPhongKhamNhaKhoa.User_Control
                 }
                 else
                 {
-                    MessageBox.Show("Thêm bệnh nhân thất bại!", "Add Patients", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    throw new InvalidExistPatients("Thêm bệnh nhân thất bại!");
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("ERROR: " + ex.Message, "Exception", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("ERROR: " + ex.Message, "Add Patients", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
         private void dataPatient_Click(object sender, EventArgs e)
@@ -191,11 +184,19 @@ namespace QuanLyPhongKhamNhaKhoa.User_Control
                 txtCCCD.Text = dataPatient.CurrentRow.Cells["persionalID"].Value.ToString();
                 txtSDT.Text = dataPatient.CurrentRow.Cells["phoneNumber"].Value.ToString();
                 txtDiaChi.Text = dataPatient.CurrentRow.Cells["address"].Value.ToString();
+
                 //xử lý ảnh
                 byte[] pic;
-                pic = (byte[])dataPatient.CurrentRow.Cells["image"].Value;
-                MemoryStream picture = new MemoryStream(pic);
-                picBoxImage.Image = Image.FromStream(picture);
+                if (dataPatient.CurrentRow.Cells["image"].Value == null || string.IsNullOrEmpty(dataPatient.CurrentRow.Cells["image"].Value.ToString()))
+                {
+                    picBoxImage.Image = Image.FromFile(@"..\..\image\logo.png");
+                }
+                else
+                {
+                    pic = (byte[])dataPatient.CurrentRow.Cells["image"].Value;
+                    MemoryStream picture = new MemoryStream(pic);
+                    picBoxImage.Image = Image.FromStream(picture);
+                }
             }
             catch (Exception ex)
             {
@@ -214,28 +215,27 @@ namespace QuanLyPhongKhamNhaKhoa.User_Control
                 string patientsID = txtMaBN.Text.Trim();
                 if (!patientsDao.existPatients(patientsID))
                 {
-                    MessageBox.Show("Bạn chưa chọn bệnh nhân cần xoá!", "Delete Patients", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
+                    throw new InvalidExistUsers("Bạn chưa chọn bệnh nhân cần xoá!");
                 }
 
                 //coi chừng khoá ngoại
-                if (MessageBox.Show("Bạn có chắc chắn muốn xoá bệnh nhân không?", "Delete User", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                if (MessageBox.Show("Bạn có chắc chắn muốn xoá bệnh nhân không?", "Delete Patient", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
                     if (patientsDao.deletePatients(patientsID))
                     {
-                        MessageBox.Show("Xoá bệnh nhân thành công!", "Delete User", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        MessageBox.Show("Xoá bệnh nhân thành công!", "Delete Patient", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         refesh();
                         reset();
                     }
                     else
                     {
-                        MessageBox.Show("Xoá bệnh nhân thất bại!", "Delete User", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show("Xoá bệnh nhân thất bại!", "Delete Patient", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("ERROR: " + ex.Message, "Exception", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("ERROR: " + ex.Message, "Delete Patient", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
         private void btnSuaBN_Click(object sender, EventArgs e)
@@ -244,14 +244,12 @@ namespace QuanLyPhongKhamNhaKhoa.User_Control
             {
                 if (verif())
                 {
-                    MessageBox.Show("Chưa nhập dữ liệu đầy đủ!", "Input", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
+                    throw new InvalidData();
                 }
                 string patientsID = txtMaBN.Text.Trim();
                 if (!patientsDao.existPatients(patientsID))
                 {
-                    MessageBox.Show("Không tồn tại bệnh nhân có mã nhân viên này!", "Update Patients", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
+                    throw new InvalidExistPatients("Không tồn tại bệnh nhân có mã nhân viên này!");
                 }
                 string fullName = txtHoTen.Text.Trim();
                 string persionalID = txtCCCD.Text.Trim();
@@ -269,34 +267,29 @@ namespace QuanLyPhongKhamNhaKhoa.User_Control
 
                 if (!Regex.IsMatch(fullName, @"^[\p{L}\s]+$"))
                 {
-                    MessageBox.Show("Họ tên không hợp lệ!", "Invalid Input", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
+                    throw new InvalidName();
                 }
                 if (!Regex.IsMatch(persionalID, @"^\d{12}$"))
                 {
-                    MessageBox.Show("Số CCCD không hợp lệ!", "Invalid Input", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
+                    throw new InvalidPersionalID();
                 }
                 if (!check_persionalID.Equals(persionalID))
                 {
                     if (patientsDao.existPersionalIDPatients(persionalID))
                     {
-                        MessageBox.Show("Số CCCD đã tồn tại!", "Invalid Input", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        return;
+                        throw new InvalidPersionalID(persionalID);
                     }
                 }
                 if (!Regex.IsMatch(phone, @"^0\d{9}$"))
                 {
-                    MessageBox.Show("Số điện thoại không hợp lệ!", "Invalid Input", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
+                    throw new InvalidSDT();
                 }
                 
                 int born_year = dateTimePickerNgSinh.Value.Year;
                 int this_year = DateTime.Now.Year;
                 if (((this_year - born_year) < 3))
                 {
-                    MessageBox.Show("Bệnh nhân không đủ tuổi để khám! (<3)", "Invalid Input", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
+                    throw new InvalidBirthdate(3);
                 }
                 DateTime birthDate = dateTimePickerNgSinh.Value;
 
@@ -312,18 +305,18 @@ namespace QuanLyPhongKhamNhaKhoa.User_Control
                 Patients patients = new Patients(patientsID, fullName, gender, birthDate, persionalID, phone, address, pic);
                 if (patientsDao.updatePatients(patients))
                 {
-                    MessageBox.Show("Cập nhật thông tin bệnh nhân thành công!", "Add Patients", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("Cập nhật thông tin bệnh nhân thành công!", "Update Patients", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     refesh();
                     reset();
                 }
                 else
                 {
-                    MessageBox.Show("Cập nhật thông tin bệnh nhân thất bại!", "Add Patients", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    throw new InvalidExistPatients("Cập nhật thông tin bệnh nhân thất bại!");
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("ERROR: " + ex.Message, "Exception", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("ERROR: " + ex.Message, "Update Patients", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
         private void btnTimKiem_Click(object sender, EventArgs e)

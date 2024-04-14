@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -18,8 +19,9 @@ namespace QuanLyPhongKhamNhaKhoa.Entity
         private string address;
         private string isRole;
         private string password;
+        private MemoryStream image;
 
-        public User(string userID, string fullName, DateTime birthDate, string gender, string persionalID, string phoneNumber, string email, string address, string isRole, string password)
+        public User(string userID, string fullName, DateTime birthDate, string gender, string persionalID, string phoneNumber, string email, string address, string isRole, string password, MemoryStream image)
         {
             UserID = userID;
             FullName = fullName;
@@ -31,6 +33,7 @@ namespace QuanLyPhongKhamNhaKhoa.Entity
             Address = address;
             IsRole = isRole;
             Password = password;
+            Image = image;
         }
         public string UserID { get; set; }
         public string FullName { get; set; }
@@ -42,6 +45,6 @@ namespace QuanLyPhongKhamNhaKhoa.Entity
         public string Address { get; set; }
         public string IsRole { get; set; }
         public string Password { get; set; }
-
+        public MemoryStream Image { get; set; }
     }
 }

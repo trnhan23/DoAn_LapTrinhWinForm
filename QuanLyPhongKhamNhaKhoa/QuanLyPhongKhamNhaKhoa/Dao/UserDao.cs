@@ -124,8 +124,8 @@ namespace QuanLyPhongKhamNhaKhoa.Dao
             try
             {
                 mydb.openConnection();
-                SqlCommand command = new SqlCommand("SELECT * FROM Users WHERE phone = @phone", mydb.getConnection);
-                command.Parameters.Add("@email", SqlDbType.VarChar).Value = phone;
+                SqlCommand command = new SqlCommand("SELECT * FROM Users WHERE phoneNumber = @phoneNumber", mydb.getConnection);
+                command.Parameters.Add("@phoneNumber", SqlDbType.VarChar).Value = phone;
                 var result = command.ExecuteReader();
                 if (result.HasRows)
                 {
@@ -170,7 +170,7 @@ namespace QuanLyPhongKhamNhaKhoa.Dao
         {
             SqlCommand command = new SqlCommand("UPDATE Users SET fullName=@fullName, " +
                 "gender=@gender, birthDate=@birthDate, persionalID=@persionalID, phoneNumber=@phoneNumber, email=@email, " +
-                "address=@address, isRole=@isRole " +
+                "address=@address, isRole=@isRole, image=@image " +
                 "WHERE userID=@userID", mydb.getConnection);
             command.Parameters.Add("@userID", SqlDbType.VarChar).Value = user.UserID;
             command.Parameters.Add("@fullName", SqlDbType.NVarChar).Value = user.FullName;
@@ -181,6 +181,7 @@ namespace QuanLyPhongKhamNhaKhoa.Dao
             command.Parameters.Add("@email", SqlDbType.VarChar).Value = user.Email;
             command.Parameters.Add("@address", SqlDbType.NVarChar).Value = user.Address;
             command.Parameters.Add("@isRole", SqlDbType.NVarChar).Value = user.IsRole;
+            command.Parameters.Add("@image", SqlDbType.Image).Value = user.Image.ToArray();
 
             mydb.openConnection();
             if ((command.ExecuteNonQuery() == 1))
@@ -197,8 +198,8 @@ namespace QuanLyPhongKhamNhaKhoa.Dao
 
         public bool insertUsers(User user)
         {
-            SqlCommand command = new SqlCommand("INSERT INTO Users (userID, fullName, gender, birthDate, persionalID, phoneNumber, email, address, isRole, password)" +
-                " VALUES (@userID,@fullName, @gender, @birthDate, @persionalID, @phoneNumber, @email, @address, @isRole, @password)", mydb.getConnection);
+            SqlCommand command = new SqlCommand("INSERT INTO Users (userID, fullName, gender, birthDate, persionalID, phoneNumber, email, address, isRole, password, image)" +
+                " VALUES (@userID,@fullName, @gender, @birthDate, @persionalID, @phoneNumber, @email, @address, @isRole, @password, @image)", mydb.getConnection);
             command.Parameters.Add("@userID", SqlDbType.VarChar).Value = user.UserID;
             command.Parameters.Add("@fullName", SqlDbType.NVarChar).Value = user.FullName;
             command.Parameters.Add("@gender", SqlDbType.NVarChar).Value = user.Gender;
@@ -209,6 +210,7 @@ namespace QuanLyPhongKhamNhaKhoa.Dao
             command.Parameters.Add("@address", SqlDbType.NVarChar).Value = user.Address;
             command.Parameters.Add("@isRole", SqlDbType.NVarChar).Value = user.IsRole;
             command.Parameters.Add("@password", SqlDbType.VarChar).Value = user.Password;
+            command.Parameters.Add("@image", SqlDbType.Image).Value = user.Image.ToArray();
 
             mydb.openConnection();
             if ((command.ExecuteNonQuery() == 1))
