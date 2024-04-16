@@ -28,7 +28,8 @@ namespace QuanLyPhongKhamNhaKhoa.User_Control
         private void lblXemHoSo_Click(object sender, EventArgs e)
         {
             AccountInfoForm accountInfoForm = new AccountInfoForm();
-            accountInfoForm.user = user;
+            //lấy userID chuyển qua cho accountInfoForm
+            accountInfoForm.userID = user.UserID;
             accountInfoForm.ShowDialog();
         }
 

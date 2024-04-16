@@ -33,12 +33,14 @@ namespace QuanLyPhongKhamNhaKhoa
             path.AddEllipse(0, 0, 50, 50);
             btnAvatar.Region = new Region(path);
             //btnAvatar.Image = Image.FromFile("../../image/dieutri.png");
+
+
             MemoryStream picture = user.Image;
             if (picture != null && picture.Length > 0)
             {
-                byte[] pic = picture.ToArray();
-                btnAvatar.Image = Image.FromStream(new MemoryStream(pic));
+                btnAvatar.Image = Image.FromStream(picture);
             }
+
             else
             {
                 btnAvatar.Image = Image.FromFile(@"..\..\image\logo.png");
@@ -46,7 +48,6 @@ namespace QuanLyPhongKhamNhaKhoa
             btnAvatar.ImageSize = new System.Drawing.Size(50, 50);
             btnAvatar.CheckedState.ImageSize = new System.Drawing.Size(64, 64);
             btnAvatar.HoverState.ImageSize = new System.Drawing.Size(64, 64);
-           
             btnAvatar.PressedState.ImageSize = new System.Drawing.Size(64, 64);
         }
 
@@ -81,7 +82,6 @@ namespace QuanLyPhongKhamNhaKhoa
         private void btnBenhNhan_Click(object sender, EventArgs e)
         {
             ResetButtonColors();
-
             Guna2Button clickedButton = (Guna2Button)sender;
             clickedButton.FillColor = Color.LightGray;
 

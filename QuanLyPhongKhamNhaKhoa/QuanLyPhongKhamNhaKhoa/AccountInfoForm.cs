@@ -19,7 +19,8 @@ namespace QuanLyPhongKhamNhaKhoa
     public partial class AccountInfoForm : Form
     {
         UserDao userDao = new UserDao();
-        public User user;
+        public string userID;
+        User user;
         public AccountInfoForm()
         {
             InitializeComponent();
@@ -158,6 +159,18 @@ namespace QuanLyPhongKhamNhaKhoa
 
         private void AccountInfoForm_Load(object sender, EventArgs e)
         {
+            layDuLieu();
+        }
+
+        private void layDuLieu()
+        {
+            SqlCommand command = new SqlCommand("SELECT * FROM Users WHERE userID = @User");
+            command.Parameters.Add("@User", SqlDbType.VarChar).Value = userID.Trim();
+            user = userDao.getUser(command);
+            if (user == null)
+            {
+                throw new InvalidExistAppointment("Lỗi hiển thị thông tin");
+            }
             loadDuLieu(user);
         }
 

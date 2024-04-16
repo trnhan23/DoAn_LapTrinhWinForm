@@ -4,6 +4,7 @@ using System.Data;
 using System;
 using System.Linq;
 using System.Windows.Forms;
+using System.IO;
 
 namespace QuanLyPhongKhamNhaKhoa.Dao
 {
@@ -249,6 +250,17 @@ namespace QuanLyPhongKhamNhaKhoa.Dao
             {
                 DataRow row = dt.Rows[0]; // Lấy dòng đầu tiên
                 // Khởi tạo đối tượng User từ dữ liệu trong DataRow
+                byte[] pic;
+                MemoryStream picture;
+                if (row["image"] == null || string.IsNullOrEmpty(row["image"].ToString()))
+                {
+                    picture = null;
+                }
+                else
+                {
+                    pic = (byte[])row["image"];
+                    picture = new MemoryStream(pic);
+                }
                 User user = new User
                 {
                     UserID = row["userID"].ToString(),
@@ -260,7 +272,8 @@ namespace QuanLyPhongKhamNhaKhoa.Dao
                     Email = row["email"].ToString(),
                     Address = row["address"].ToString(),
                     IsRole = row["isRole"].ToString(),
-                    Password = row["password"].ToString()
+                    Password = row["password"].ToString(),
+                    Image = picture
                 };
                 return user; // Trả về đối tượng User đã tạo
             }

@@ -27,25 +27,17 @@ namespace QuanLyPhongKhamNhaKhoa
 
         private void button1_Click(object sender, EventArgs e)
         {
-            SQLConnectionData mydb = new SQLConnectionData();
-            SqlDataAdapter adapter = new SqlDataAdapter();
-            DataTable table = new DataTable();
-            SqlCommand command = new SqlCommand("SELECT * FROM Users WHERE userID = @User AND password = @Pass", mydb.getConnection);
+            SqlCommand command = new SqlCommand("SELECT * FROM Users WHERE userID = @User AND password = @Pass");
             command.Parameters.Add("@User", SqlDbType.VarChar).Value = txtTenDangNhap.Text.Trim();
             command.Parameters.Add("@Pass", SqlDbType.VarChar).Value = txtMatKhau.Text.Trim();
-
-            adapter.SelectCommand = command;
-
-            adapter.Fill(table);
-
-            if ((table.Rows.Count > 0))
+            
+            User user = userDao.getUser(command);
+            if (user != null)
             {
-                User user = userDao.getUser(command);
                 MainForm mainForm = new MainForm();
                 mainForm.user = user;
                 this.Hide();
-                mainForm.ShowDialog(); 
-                
+                mainForm.ShowDialog();
             }
             else
             {
