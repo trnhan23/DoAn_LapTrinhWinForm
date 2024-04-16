@@ -6,6 +6,11 @@ using System.Threading.Tasks;
 
 namespace QuanLyPhongKhamNhaKhoa.Validation
 {
+    class InvalidExistAppointment : Exception
+    {
+        public InvalidExistAppointment() : base("Đã tồn tại mã cuộc hẹn này!") { }
+        public InvalidExistAppointment(string message) : base(message) { }
+    }
     class InvalidExistPatients : Exception
     {
         public InvalidExistPatients() : base("Đã tồn tại mã bệnh nhân này!") { }
@@ -13,7 +18,7 @@ namespace QuanLyPhongKhamNhaKhoa.Validation
     }
     class InvalidBirthdate : Exception
     {
-        public InvalidBirthdate(int age) : base("Tuổi người đăng kí không hợp lệ!\nPhải lớn hơn "+ age +" tuổi") { }
+        public InvalidBirthdate(int age) : base("Tuổi người đăng kí không hợp lệ!\nPhải lớn hơn " + age + " tuổi") { }
     }
     class InvalidEmail : Exception
     {
@@ -23,7 +28,7 @@ namespace QuanLyPhongKhamNhaKhoa.Validation
     class InvalidSDT : Exception
     {
         public InvalidSDT() : base("Số điện thoại không hợp lệ!") { }
-        public InvalidSDT(string sdt) : base("Số điện thoại "+ sdt +" đã tồn tại!") { }
+        public InvalidSDT(string sdt) : base("Số điện thoại " + sdt + " đã tồn tại!") { }
     }
     class InvalidData : Exception
     {
@@ -41,6 +46,6 @@ namespace QuanLyPhongKhamNhaKhoa.Validation
     class InvalidPersionalID : Exception
     {
         public InvalidPersionalID() : base("Số CCCD không hợp lệ!") { }
-        public InvalidPersionalID(string persionalID) : base("Số CCCD "+ persionalID +" đã tồn tại!") { }
+        public InvalidPersionalID(string persionalID) : base("Số CCCD " + persionalID + " đã tồn tại!") { }
     }
 }

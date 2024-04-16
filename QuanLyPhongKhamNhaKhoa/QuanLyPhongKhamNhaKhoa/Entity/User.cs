@@ -21,6 +21,10 @@ namespace QuanLyPhongKhamNhaKhoa.Entity
         private string password;
         private MemoryStream image;
 
+        public User()
+        {
+        }
+
         public User(string userID, string fullName, DateTime birthDate, string gender, string persionalID, string phoneNumber, string email, string address, string isRole, string password, MemoryStream image)
         {
             UserID = userID;

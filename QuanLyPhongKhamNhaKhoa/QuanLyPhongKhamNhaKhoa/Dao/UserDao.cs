@@ -3,6 +3,7 @@ using System.Data.SqlClient;
 using System.Data;
 using System;
 using System.Linq;
+using System.Windows.Forms;
 
 namespace QuanLyPhongKhamNhaKhoa.Dao
 {
@@ -11,6 +12,14 @@ namespace QuanLyPhongKhamNhaKhoa.Dao
         SQLConnectionData mydb = new SQLConnectionData();
         private Random random = new Random();
 
+        public DataTable getAllDentist()
+        {
+            SqlCommand command = new SqlCommand("SELECT * FROM Users WHERE isRole = 'DENTIST'", mydb.getConnection);
+            SqlDataAdapter adapter = new SqlDataAdapter(command);
+            DataTable table = new DataTable();
+            adapter.Fill(table);
+            return table;
+        }
         public string taoPassword()
         {
             const string upperChars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
@@ -43,13 +52,16 @@ namespace QuanLyPhongKhamNhaKhoa.Dao
                 if (chucVu.Equals("ADMIN"))
                 {
                     result = $"ADMI{randomPart}";
-                } else if (chucVu.Equals("DENTIST"))
+                }
+                else if (chucVu.Equals("DENTIST"))
                 {
                     result = $"DENT{randomPart}";
-                } else if (chucVu.Equals("ASSISTANT"))
+                }
+                else if (chucVu.Equals("ASSISTANT"))
                 {
                     result = $"ASSI{randomPart}";
-                } else
+                }
+                else
                 {
                     result = $"USER{randomPart}";
                 }
@@ -222,6 +234,39 @@ namespace QuanLyPhongKhamNhaKhoa.Dao
             {
                 mydb.closeConnection();
                 return false;
+            }
+        }
+        
+        public User getUser(SqlCommand cmd)
+        {
+            cmd.Connection = mydb.getConnection;
+            SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+            DataTable dt = new DataTable(); // Tạo DataTable để chứa dữ liệu từ cơ sở dữ liệu
+            adapter.Fill(dt); // Lấy dữ liệu từ cơ sở dữ liệu và đổ vào DataTable
+
+            // Kiểm tra nếu có dữ liệu trong DataTable
+            if (dt.Rows.Count > 0)
+            {
+                DataRow row = dt.Rows[0]; // Lấy dòng đầu tiên
+                // Khởi tạo đối tượng User từ dữ liệu trong DataRow
+                User user = new User
+                {
+                    UserID = row["userID"].ToString(),
+                    FullName = row["fullName"].ToString(),
+                    BirthDate = Convert.ToDateTime(row["birthDate"]),
+                    Gender = row["gender"].ToString(),
+                    PersionalID = row["persionalID"].ToString(),
+                    PhoneNumber = row["phoneNumber"].ToString(),
+                    Email = row["email"].ToString(),
+                    Address = row["address"].ToString(),
+                    IsRole = row["isRole"].ToString(),
+                    Password = row["password"].ToString()
+                };
+                return user; // Trả về đối tượng User đã tạo
+            }
+            else
+            {
+                return null; // Trả về null nếu không có dữ liệu trong DataTable
             }
         }
     }

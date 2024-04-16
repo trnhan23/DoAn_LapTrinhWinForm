@@ -4,15 +4,47 @@ using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Data;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace QuanLyPhongKhamNhaKhoa.Dao
 {
     internal class AppointmentDao
     {
         SQLConnectionData mydb = new SQLConnectionData();
+        private Random random = new Random();
 
+        public string taoMaAppointment()
+        {
+            const string chars = "0123456789";
+            string result;
+            do
+            {
+                string randomPart = new string(Enumerable.Repeat(chars, 6).Select(s => s[random.Next(s.Length)]).ToArray());
+                result = $"APPO{randomPart}";
+
+            } while (existAppointment(result));
+            return result;
+        }
+        public bool existAppointment(string id)
+        {
+            try
+            {
+                mydb.openConnection();
+                SqlCommand command = new SqlCommand("SELECT * FROM Appointment WHERE appointmentID = @appointmentID", mydb.getConnection);
+                command.Parameters.Add("@appointmentID", SqlDbType.VarChar).Value = id;
+                var result = command.ExecuteReader();
+                if (result.HasRows)
+                {
+                    mydb.closeConnection();
+                    return true;
+                }
+                mydb.closeConnection();
+                return false;
+            }
+            catch
+            {
+                return true;
+            }
+        }
         public DataTable getAppointment(SqlCommand command)
         {
             command.Connection = mydb.getConnection;
@@ -52,7 +84,7 @@ namespace QuanLyPhongKhamNhaKhoa.Dao
             command.Parameters.Add("@appointmentDate", SqlDbType.DateTime).Value = appointment.AppointmentDate;
             command.Parameters.Add("@startTime", SqlDbType.Time).Value = appointment.StartTime;
             command.Parameters.Add("@endTime", SqlDbType.Time).Value = appointment.EndTime;
-            command.Parameters.Add("@status", SqlDbType.Bit).Value = appointment.Status;
+            command.Parameters.Add("@status", SqlDbType.NVarChar).Value = appointment.Status;
 
             mydb.openConnection();
 
@@ -76,9 +108,9 @@ namespace QuanLyPhongKhamNhaKhoa.Dao
             command.Parameters.Add("@patientsID", SqlDbType.VarChar).Value = appointment.PatientsID;
             command.Parameters.Add("@userID", SqlDbType.VarChar).Value = appointment.UserID;
             command.Parameters.Add("@appointmentDate", SqlDbType.DateTime).Value = appointment.AppointmentDate;
-            command.Parameters.Add("@startTime", SqlDbType.Time).Value = appointment.StartTime;
-            command.Parameters.Add("@endTime", SqlDbType.Time).Value = appointment.EndTime;
-            command.Parameters.Add("@status", SqlDbType.Bit).Value = appointment.Status;
+            command.Parameters.Add("@startTime", SqlDbType.DateTime).Value = appointment.StartTime;
+            command.Parameters.Add("@endTime", SqlDbType.DateTime).Value = appointment.EndTime;
+            command.Parameters.Add("@status", SqlDbType.NVarChar).Value = appointment.Status;
 
             mydb.openConnection();
             if ((command.ExecuteNonQuery() == 1))

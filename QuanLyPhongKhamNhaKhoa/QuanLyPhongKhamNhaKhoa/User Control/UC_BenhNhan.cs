@@ -2,40 +2,22 @@
 using QuanLyPhongKhamNhaKhoa.Entity;
 using QuanLyPhongKhamNhaKhoa.Validation;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
 using System.IO;
-using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace QuanLyPhongKhamNhaKhoa.User_Control
 {
     public partial class UC_BenhNhan : UserControl
     {
-        PatientsDao patientsDao = new PatientsDao();
         public UC_BenhNhan()
         {
             InitializeComponent();
         }
-        private void btnChonAnh_Click(object sender, EventArgs e)
-        {
-            OpenFileDialog opf = new OpenFileDialog();
-            opf.Filter = "Select Image(*.jpg;*.png;*.gif)|*.jpg;*.png;*.gif";
-            if ((opf.ShowDialog() == DialogResult.OK))
-            {
-                picBoxImage.Image = Image.FromFile(opf.FileName);
-            }
-        }
-        private void UC_BenhNhan_Load(object sender, EventArgs e)
-        {
-            refesh();
-        }
+        PatientsDao patientsDao = new PatientsDao();
         public void refesh()
         {
             SqlCommand command = new SqlCommand("SELECT * FROM Patients");
@@ -77,7 +59,7 @@ namespace QuanLyPhongKhamNhaKhoa.User_Control
                 dataPatient.ReadOnly = true;
                 dataPatient.DataSource = patientsDao.getPatients(command);
                 dataPatient.AllowUserToAddRows = false;
-
+                dataPatient.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                 DataGridViewImageColumn picCol = new DataGridViewImageColumn();
                 dataPatient.RowTemplate.Height = 80;
                 picCol = (DataGridViewImageColumn)dataPatient.Columns["image"];
@@ -98,6 +80,12 @@ namespace QuanLyPhongKhamNhaKhoa.User_Control
                 MessageBox.Show("ERROR: " + ex.Message, "Exception", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+        private void btnLamMoi_Click(object sender, EventArgs e)
+        {
+            reset();
+            refesh();
+        }
+
         private void btnThemBN_Click(object sender, EventArgs e)
         {
             try
@@ -114,7 +102,7 @@ namespace QuanLyPhongKhamNhaKhoa.User_Control
                 string fullName = txtHoTen.Text.Trim();
                 string persionalID = txtCCCD.Text.Trim();
                 string phone = txtSDT.Text.Trim();
-                
+
                 string address = txtDiaChi.Text.Trim();
                 if (!Regex.IsMatch(fullName, @"^[\p{L}\s]+$"))
                 {
@@ -168,76 +156,7 @@ namespace QuanLyPhongKhamNhaKhoa.User_Control
                 MessageBox.Show("ERROR: " + ex.Message, "Add Patients", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-        private void dataPatient_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                txtMaBN.Text = dataPatient.CurrentRow.Cells["patientsID"].Value.ToString();
-                txtHoTen.Text = dataPatient.CurrentRow.Cells["fullName"].Value.ToString();
-                dateTimePickerNgSinh.Value = (DateTime)dataPatient.CurrentRow.Cells["birthDate"].Value;
-                if (dataPatient.CurrentRow.Cells["gender"].Value.ToString().Trim() == "Nữ")
-                {
-                    rbFemale.Checked = true;
-                }
-                else rbMale.Checked = true;
 
-                txtCCCD.Text = dataPatient.CurrentRow.Cells["persionalID"].Value.ToString();
-                txtSDT.Text = dataPatient.CurrentRow.Cells["phoneNumber"].Value.ToString();
-                txtDiaChi.Text = dataPatient.CurrentRow.Cells["address"].Value.ToString();
-
-                //xử lý ảnh
-                byte[] pic;
-                if (dataPatient.CurrentRow.Cells["image"].Value == null || string.IsNullOrEmpty(dataPatient.CurrentRow.Cells["image"].Value.ToString()))
-                {
-                    picBoxImage.Image = Image.FromFile(@"..\..\image\logo.png");
-                }
-                else
-                {
-                    pic = (byte[])dataPatient.CurrentRow.Cells["image"].Value;
-                    MemoryStream picture = new MemoryStream(pic);
-                    picBoxImage.Image = Image.FromStream(picture);
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("ERROR: " + ex.Message, "Exception", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-        private void btnLamMoi_Click(object sender, EventArgs e)
-        {
-            reset();
-            refesh();
-        }
-        private void btnXoaBN_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                string patientsID = txtMaBN.Text.Trim();
-                if (!patientsDao.existPatients(patientsID))
-                {
-                    throw new InvalidExistUsers("Bạn chưa chọn bệnh nhân cần xoá!");
-                }
-
-                //coi chừng khoá ngoại
-                if (MessageBox.Show("Bạn có chắc chắn muốn xoá bệnh nhân không?", "Delete Patient", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
-                {
-                    if (patientsDao.deletePatients(patientsID))
-                    {
-                        MessageBox.Show("Xoá bệnh nhân thành công!", "Delete Patient", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        refesh();
-                        reset();
-                    }
-                    else
-                    {
-                        MessageBox.Show("Xoá bệnh nhân thất bại!", "Delete Patient", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("ERROR: " + ex.Message, "Delete Patient", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
         private void btnSuaBN_Click(object sender, EventArgs e)
         {
             try
@@ -284,7 +203,7 @@ namespace QuanLyPhongKhamNhaKhoa.User_Control
                 {
                     throw new InvalidSDT();
                 }
-                
+
                 int born_year = dateTimePickerNgSinh.Value.Year;
                 int this_year = DateTime.Now.Year;
                 if (((this_year - born_year) < 3))
@@ -319,11 +238,49 @@ namespace QuanLyPhongKhamNhaKhoa.User_Control
                 MessageBox.Show("ERROR: " + ex.Message, "Update Patients", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-        private void btnTimKiem_Click(object sender, EventArgs e)
+
+        private void btnXoaBN_Click(object sender, EventArgs e)
         {
-            timKiem();
+            try
+            {
+                string patientsID = txtMaBN.Text.Trim();
+                if (!patientsDao.existPatients(patientsID))
+                {
+                    throw new InvalidExistUsers("Bạn chưa chọn bệnh nhân cần xoá!");
+                }
+
+                //coi chừng khoá ngoại
+                if (MessageBox.Show("Bạn có chắc chắn muốn xoá bệnh nhân không?", "Delete Patient", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                {
+                    if (patientsDao.deletePatients(patientsID))
+                    {
+                        MessageBox.Show("Xoá bệnh nhân thành công!", "Delete Patient", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        refesh();
+                        reset();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Xoá bệnh nhân thất bại!", "Delete Patient", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("ERROR: " + ex.Message, "Delete Patient", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
-        private void txtTimKiem_TextChanged(object sender, EventArgs e)
+
+        private void btnChonAnh_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog opf = new OpenFileDialog();
+            opf.Filter = "Select Image(*.jpg;*.png;*.gif)|*.jpg;*.png;*.gif";
+            if ((opf.ShowDialog() == DialogResult.OK))
+            {
+                picBoxImage.Image = Image.FromFile(opf.FileName);
+            }
+        }
+
+        private void btnTimKiem_Click(object sender, EventArgs e)
         {
             timKiem();
         }
@@ -333,6 +290,56 @@ namespace QuanLyPhongKhamNhaKhoa.User_Control
                 "phoneNumber LIKE @timKiem ");
             command.Parameters.Add("@timKiem", SqlDbType.NVarChar).Value = "%" + txtTimKiem.Text.Trim() + "%";
             fillGrid(command);
+        }
+        private void btnXuatDuLieu_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void UC_BenhNhan_Load(object sender, EventArgs e)
+        {
+            refesh();
+        }
+
+        private void dataPatient_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                txtMaBN.Text = dataPatient.CurrentRow.Cells["patientsID"].Value.ToString();
+                txtHoTen.Text = dataPatient.CurrentRow.Cells["fullName"].Value.ToString();
+                dateTimePickerNgSinh.Value = (DateTime)dataPatient.CurrentRow.Cells["birthDate"].Value;
+                if (dataPatient.CurrentRow.Cells["gender"].Value.ToString().Trim() == "Nữ")
+                {
+                    rbFemale.Checked = true;
+                }
+                else rbMale.Checked = true;
+
+                txtCCCD.Text = dataPatient.CurrentRow.Cells["persionalID"].Value.ToString();
+                txtSDT.Text = dataPatient.CurrentRow.Cells["phoneNumber"].Value.ToString();
+                txtDiaChi.Text = dataPatient.CurrentRow.Cells["address"].Value.ToString();
+
+                //xử lý ảnh
+                byte[] pic;
+                if (dataPatient.CurrentRow.Cells["image"].Value == null || string.IsNullOrEmpty(dataPatient.CurrentRow.Cells["image"].Value.ToString()))
+                {
+                    picBoxImage.Image = Image.FromFile(@"..\..\image\logo.png");
+                }
+                else
+                {
+                    pic = (byte[])dataPatient.CurrentRow.Cells["image"].Value;
+                    MemoryStream picture = new MemoryStream(pic);
+                    picBoxImage.Image = Image.FromStream(picture);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("ERROR: " + ex.Message, "Exception", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void txtTimKiem_TextChanged(object sender, EventArgs e)
+        {
+            timKiem();
         }
     }
 }

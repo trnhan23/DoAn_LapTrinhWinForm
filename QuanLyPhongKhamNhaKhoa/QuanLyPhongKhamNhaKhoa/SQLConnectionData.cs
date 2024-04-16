@@ -29,6 +29,7 @@ namespace QuanLyPhongKhamNhaKhoa
             {
                 con.Open();
             }
+
         }
 
 
@@ -39,6 +40,7 @@ namespace QuanLyPhongKhamNhaKhoa
             {
                 con.Close();
             }
+
         }
 
     }

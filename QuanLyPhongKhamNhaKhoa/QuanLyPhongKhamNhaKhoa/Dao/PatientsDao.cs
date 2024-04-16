@@ -14,7 +14,7 @@ using System.IO;
 
 namespace QuanLyPhongKhamNhaKhoa.Dao
 {
-    internal class PatientsDao
+    class PatientsDao
     {
         SQLConnectionData mydb = new SQLConnectionData();
         private Random random = new Random();

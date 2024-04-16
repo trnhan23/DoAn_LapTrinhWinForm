@@ -16,7 +16,12 @@ namespace QuanLyPhongKhamNhaKhoa
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new MainForm());
+
+
+            LoginForm loginForm = new LoginForm();
+            loginForm.ShowDialog();
+
+            //Application.Run(new MainForm());
         }
     }
 }

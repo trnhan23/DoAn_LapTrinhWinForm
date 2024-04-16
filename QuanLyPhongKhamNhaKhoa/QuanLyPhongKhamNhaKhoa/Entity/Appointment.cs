@@ -12,16 +12,26 @@ namespace QuanLyPhongKhamNhaKhoa.Entity
         private string patientsID;
         private string userID;
         private DateTime appointmentDate;
-        private TimeSpan startTime;
-        private TimeSpan endTime;
-        private bool status;
+        private DateTime startTime;
+        private DateTime endTime;
+        private string status;
 
-        public string AppointmentID { get { return appointmentID; } set {appointmentID = value;} }
-        public string PatientsID { get { return patientsID; } set {patientsID = value;} }
-        public string UserID { get { return userID; } set {userID = value;} }
-        public DateTime AppointmentDate { get { return appointmentDate; } set {appointmentDate = value;} }
-        public TimeSpan StartTime { get { return startTime; } set {startTime = value;} }
-        public TimeSpan EndTime { get { return endTime; } set {endTime = value;} }
-        public bool Status { get { return status; } set {status = value;} }
+        public Appointment(string appointmentID, string patientsID, string userID, DateTime appointmentDate, DateTime startTime, DateTime endTime, string status)
+        {
+            this.appointmentID = appointmentID;
+            this.patientsID = patientsID;
+            this.userID = userID;
+            this.appointmentDate = appointmentDate;
+            this.startTime = startTime;
+            this.endTime = endTime;
+            this.status = status;
+        }
+        public string AppointmentID { get; set; }
+        public string PatientsID { get; set; }
+        public string UserID { get; set; }
+        public DateTime AppointmentDate { get; set; }
+        public DateTime StartTime { get; set; }
+        public DateTime EndTime { get; set; }
+        public string Status { get; set; }
     }
 }
