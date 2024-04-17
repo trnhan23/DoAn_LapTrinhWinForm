@@ -103,17 +103,23 @@ namespace QuanLyPhongKhamNhaKhoa.User_Control
         }
         public void hienThiGridView()
         {
-            string[] parts = comboBoxBacSi.Text.Split(new[] { " - " }, StringSplitOptions.None);
-            string userId = parts[0];
-            string fullName = parts[1];
+            try
+            {
+                string[] parts = comboBoxBacSi.Text.Split(new[] { " - " }, StringSplitOptions.None);
+                string userId = parts[0];
+                string fullName = parts[1];
 
-            string fullNameBS = comboBoxBacSi.Text.Trim();
-            SqlCommand command = new SqlCommand(
-                "SELECT u.userID, u.fullName, u.phoneNumber, u.email,a.appointmentDate, a.startTime, a.endTime, a.status\r\n" +
-                "FROM Users u, Appointment a\r\n" +
-                "WHERE u.userID = a.userID AND u.userID=@userID AND u.isRole='DENTIST'");
-            command.Parameters.Add("@userID", SqlDbType.VarChar).Value = userId;
-            fillGrid(command);
+                string fullNameBS = comboBoxBacSi.Text.Trim();
+                SqlCommand command = new SqlCommand(
+                    "SELECT u.userID, u.fullName, u.phoneNumber, u.email,a.appointmentDate, a.startTime, a.endTime, a.status\r\n" +
+                    "FROM Users u, Appointment a\r\n" +
+                    "WHERE u.userID = a.userID AND u.userID=@userID AND u.isRole='DENTIST'");
+                command.Parameters.Add("@userID", SqlDbType.VarChar).Value = userId;
+                fillGrid(command);
+            }catch(Exception ex)
+            {
+                MessageBox.Show("ERROR: " + ex.Message, "Exception", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
         private void fillGrid(SqlCommand command)
         {

@@ -250,6 +250,8 @@ namespace QuanLyPhongKhamNhaKhoa.Dao
             {
                 DataRow row = dt.Rows[0]; // Lấy dòng đầu tiên
                 // Khởi tạo đối tượng User từ dữ liệu trong DataRow
+
+                //xử lý ảnh
                 byte[] pic;
                 MemoryStream picture;
                 if (row["image"] == null || string.IsNullOrEmpty(row["image"].ToString()))

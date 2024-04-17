@@ -28,7 +28,6 @@ namespace QuanLyPhongKhamNhaKhoa.User_Control
         {
             refesh();
         }
-
         private void fillGrid(SqlCommand command)
         {
             try

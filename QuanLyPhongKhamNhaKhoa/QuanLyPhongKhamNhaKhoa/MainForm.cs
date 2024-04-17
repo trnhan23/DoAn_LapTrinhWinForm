@@ -23,24 +23,28 @@ namespace QuanLyPhongKhamNhaKhoa
         }
         
         public User user = new User();
-        private void MainForm_Load(object sender, EventArgs e)
+        public MemoryStream picture = null;
+        public void MainForm_Load(object sender, EventArgs e)
         {
             ResetButtonColors();
             uC_NhanVien2.Visible = false;
+            picture = user.Image;
+            xuLyAvatar(picture);
 
+        }
+        public void xuLyAvatar(MemoryStream picture)
+        {
             btnAvatar.Size = new System.Drawing.Size(50, 50);
             GraphicsPath path = new GraphicsPath();
             path.AddEllipse(0, 0, 50, 50);
             btnAvatar.Region = new Region(path);
             //btnAvatar.Image = Image.FromFile("../../image/dieutri.png");
 
-
-            MemoryStream picture = user.Image;
+            //MemoryStream picture = user.Image;
             if (picture != null && picture.Length > 0)
             {
                 btnAvatar.Image = Image.FromStream(picture);
             }
-
             else
             {
                 btnAvatar.Image = Image.FromFile(@"..\..\image\logo.png");
@@ -89,12 +93,14 @@ namespace QuanLyPhongKhamNhaKhoa
             uC_BenhNhan1.BringToFront();
         }
 
-        
-
         private void guna2PictureBox1_Click(object sender, EventArgs e)
         {
             ResetButtonColors();
             picBoxNen.BringToFront();
+            if (picture == null)
+                picture = user.Image;
+            else
+                this.xuLyAvatar(picture);
         }
 
         private void picBoxNen_Click(object sender, EventArgs e)
@@ -140,8 +146,6 @@ namespace QuanLyPhongKhamNhaKhoa
             btnLichHen.FillColor = Color.SteelBlue;
             btnBaoCao.FillColor = Color.SteelBlue;
             btnDieuTri.FillColor = Color.SteelBlue;
-
-
         }
 
         private void uC_DieuTri1_Load(object sender, EventArgs e)
@@ -159,7 +163,6 @@ namespace QuanLyPhongKhamNhaKhoa
             {
                 uC_TuyChonTaiKhoan1.Visible = false;
             }
-            
         }
 
         private void btnQuanLy_Click(object sender, EventArgs e)

@@ -144,7 +144,11 @@ namespace QuanLyPhongKhamNhaKhoa
                 if (userDao.updateUsers(userNew))
                 {
                     MessageBox.Show("Cập nhật thông tin người dùng thành công!", "Update User", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    //hiển thị các dữ liệu đã được chỉnh sủa lên textbox
                     loadDuLieu(userNew);
+                    //hiển thị lại avatar trong mainform
+                    MainForm mainForm = new MainForm();
+                    mainForm.picture = pic;
                 }
                 else
                 {
@@ -196,10 +200,10 @@ namespace QuanLyPhongKhamNhaKhoa
                 byte[] pic = picture.ToArray();
                 picBoxImage.Image = Image.FromStream(new MemoryStream(pic));
             }
-            /*else
+            else
             {
-                picBoxImage.Image = Image.FromFile(@"..\..\image\logo.png");
-            }*/
+                picBoxImage.Image = Image.FromFile(@"..\..\image\user.jpg");
+            }
         }
 
         private void btnSuaNV_Click(object sender, EventArgs e)
