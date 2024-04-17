@@ -12,11 +12,11 @@ namespace QuanLyPhongKhamNhaKhoa.Entity
         private string patientsID;
         private string userID;
         private DateTime appointmentDate;
-        private DateTime startTime;
-        private DateTime endTime;
+        private string startTime;
+        private string endTime;
         private string status;
 
-        public Appointment(string appointmentID, string patientsID, string userID, DateTime appointmentDate, DateTime startTime, DateTime endTime, string status)
+        public Appointment(string appointmentID, string patientsID, string userID, DateTime appointmentDate, string startTime, string endTime, string status)
         {
             this.appointmentID = appointmentID;
             this.patientsID = patientsID;
@@ -30,8 +30,8 @@ namespace QuanLyPhongKhamNhaKhoa.Entity
         public string PatientsID { get; set; }
         public string UserID { get; set; }
         public DateTime AppointmentDate { get; set; }
-        public DateTime StartTime { get; set; }
-        public DateTime EndTime { get; set; }
+        public string StartTime { get; set; }
+        public string EndTime { get; set; }
         public string Status { get; set; }
     }
 }

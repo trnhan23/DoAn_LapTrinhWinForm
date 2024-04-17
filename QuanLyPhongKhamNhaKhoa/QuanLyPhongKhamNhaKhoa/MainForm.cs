@@ -81,8 +81,6 @@ namespace QuanLyPhongKhamNhaKhoa
             Application.Exit();
         }
 
-       
-
         private void btnBenhNhan_Click(object sender, EventArgs e)
         {
             ResetButtonColors();

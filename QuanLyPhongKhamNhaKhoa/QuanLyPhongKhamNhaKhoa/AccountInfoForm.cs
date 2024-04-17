@@ -146,9 +146,6 @@ namespace QuanLyPhongKhamNhaKhoa
                     MessageBox.Show("Cập nhật thông tin người dùng thành công!", "Update User", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     //hiển thị các dữ liệu đã được chỉnh sủa lên textbox
                     loadDuLieu(userNew);
-                    //hiển thị lại avatar trong mainform
-                    MainForm mainForm = new MainForm();
-                    mainForm.picture = pic;
                 }
                 else
                 {

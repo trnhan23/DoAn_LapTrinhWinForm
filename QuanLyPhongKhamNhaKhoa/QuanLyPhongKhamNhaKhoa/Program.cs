@@ -18,10 +18,10 @@ namespace QuanLyPhongKhamNhaKhoa
             Application.SetCompatibleTextRenderingDefault(false);
 
 
-            LoginForm loginForm = new LoginForm();
-            loginForm.ShowDialog();
+            /*LoginForm loginForm = new LoginForm();
+            loginForm.ShowDialog();*/
 
-            //Application.Run(new MainForm());
+            Application.Run(new MainForm());
         }
     }
 }

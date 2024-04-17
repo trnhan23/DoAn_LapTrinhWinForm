@@ -34,6 +34,7 @@ namespace QuanLyPhongKhamNhaKhoa.User_Control
             comboBoxTrangThai.Items.Add("Huỷ lịch");
             comboBoxTrangThai.SelectedItem = "Đặt lịch";
             comboBoxTrangThai.DropDownStyle = ComboBoxStyle.DropDownList;
+            comboBoxBacSi.DropDownStyle = ComboBoxStyle.DropDownList;
         }
         private void txtCCCD_TextChanged(object sender, EventArgs e)
         {
@@ -67,23 +68,87 @@ namespace QuanLyPhongKhamNhaKhoa.User_Control
         }
         public void load()
         {
-            DataTable table = usersDao.getAllDentist();
-            if (table.Rows.Count > 0)
+            try
             {
-                //gán cho combobox bác sĩ
-                table.Columns.Add("FullNameWithID", typeof(string), "userID + ' - ' + fullName");
-                comboBoxBacSi.DisplayMember = "FullNameWithID";
-                comboBoxBacSi.DataSource = table;
+                DataTable table = usersDao.getAllDentist();
+                if (table.Rows.Count > 0)
+                {
+                    //gán cho combobox bác sĩ
+                    table.Columns.Add("FullNameWithID", typeof(string), "userID + ' - ' + fullName");
+                    comboBoxBacSi.DisplayMember = "FullNameWithID";
+                    comboBoxBacSi.DataSource = table;
 
-                //gán giá trị cho gridview
-                hienThiGridView();
-                hienThiThongTinBacSi();
-            }
-            else
+                    //gán giá trị cho gridview
+                    hienThiGridView();
+                    hienThiThongTinBacSi();
+                }
+                else
+                {
+                    comboBoxBacSi.Items.Add("Không tìm thấy");
+                    comboBoxBacSi.SelectedIndex = 0;
+                }
+            }catch(Exception ex)
             {
-                comboBoxBacSi.Items.Add("Không tìm thấy");
-                comboBoxBacSi.SelectedIndex = 0;
+                MessageBox.Show("ERROR: " + ex.Message, "Exception", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+        public void hienThiThongTinLichHen(string maLichHen)
+        {
+            try
+            {
+                SqlCommand command = new SqlCommand("SELECT * FROM Appointment WHERE appointmentID=@appointmentID");
+                command.Parameters.Add("@appointmentID", SqlDbType.VarChar).Value = maLichHen.Trim();
+                DataTable table = appDao.getAppointment(command);
+                if (table.Rows.Count > 0)
+                {
+                    txtMaLichHen.Text = table.Rows[0]["appointmentID"].ToString().Trim();
+                    dateTimePickerNgayHen.Value = (DateTime)table.Rows[0]["appointmentDate"];
+
+                    TimeSpan startTime = (TimeSpan)table.Rows[0]["startTime"];
+                    TimeSpan endTime = (TimeSpan)table.Rows[0]["endTime"];
+
+                    pickTimeStart.Value = DateTime.Today.Add(startTime);
+                    pickTimeEnd.Value = DateTime.Today.Add(endTime);
+
+                    comboBoxTrangThai.Text = table.Rows[0]["status"].ToString().Trim();
+                }
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show("ERROR: " + ex.Message, "Exception", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+        public void hienThiThongTinBenhNhan(string CCCD)
+        {
+            try
+            {
+                SqlCommand command = new SqlCommand("SELECT * FROM Patients WHERE persionalID=@persionalID");
+                command.Parameters.Add("@persionalID", SqlDbType.VarChar).Value = CCCD.Trim();
+                DataTable table = appDao.getAppointment(command);
+                if (table.Rows.Count > 0)
+                {
+                    txtCCCDBN.Text = table.Rows[0]["persionalID"].ToString().Trim();
+                    txtTenBN.Text = table.Rows[0]["fullName"].ToString().Trim();
+                    dateTimePickerNgaySinh.Value = (DateTime)table.Rows[0]["birthDate"];
+                    radioButtonFemale.Checked = true;
+                    if(table.Rows[0]["gender"].ToString().Trim().Equals("Nam"))
+                        radioButtonMale.Checked = true;
+                    txtSoDTBN.Text = table.Rows[0]["phoneNumber"].ToString().Trim();
+                    txtDiaChiBN.Text = table.Rows[0]["address"].ToString().Trim();
+                    txtMaBN.Text = table.Rows[0]["patientsID"].ToString().Trim();
+                }
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show("ERROR: " + ex.Message, "Exception", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+        private void dataLichHen_Click(object sender, EventArgs e)
+        {
+            string maLichHen = dataLichHen.CurrentRow.Cells["appointmentID"].Value.ToString();
+            hienThiThongTinLichHen(maLichHen);
+            string cccd = dataLichHen.CurrentRow.Cells["persionalID"].Value.ToString();
+            hienThiThongTinBenhNhan(cccd);
         }
         public void hienThiThongTinBacSi()
         {
@@ -91,7 +156,7 @@ namespace QuanLyPhongKhamNhaKhoa.User_Control
             string userID = parts[0];
             string fullName = parts[1];
 
-            SqlCommand command = new SqlCommand("SELECT phoneNumber FROM Users WHERE userID=@userID");
+            SqlCommand command = new SqlCommand("SELECT phoneNumber, email FROM Users WHERE userID=@userID");
             command.Parameters.Add("@userID", SqlDbType.VarChar).Value = userID;
             DataTable table = usersDao.getUsers(command);
             if (table.Rows.Count > 0)
@@ -99,6 +164,7 @@ namespace QuanLyPhongKhamNhaKhoa.User_Control
                 txtMaBS.Text = userID.Trim();
                 txtTenBS.Text = fullName.Trim();
                 txtSoDTBS.Text = table.Rows[0]["phoneNumber"].ToString().Trim();
+                txtEmailBS.Text = table.Rows[0]["email"].ToString().Trim();
             }
         }
         public void hienThiGridView()
@@ -110,9 +176,8 @@ namespace QuanLyPhongKhamNhaKhoa.User_Control
                 string fullName = parts[1];
 
                 string fullNameBS = comboBoxBacSi.Text.Trim();
-                SqlCommand command = new SqlCommand(
-                    "SELECT u.userID, u.fullName, u.phoneNumber, u.email,a.appointmentDate, a.startTime, a.endTime, a.status\r\n" +
-                    "FROM Users u, Appointment a\r\n" +
+                SqlCommand command = new SqlCommand("SELECT a.appointmentID, u.fullName, p.fullName, p.persionalID, a.appointmentDate, a.startTime, a.endTime, a.status\r\n" +
+                    "FROM (Appointment a LEFT JOIN Users u ON a.userID = u.userID) LEFT JOIN Patients p ON a.patientsID = p.patientsID\r\n" +
                     "WHERE u.userID = a.userID AND u.userID=@userID AND u.isRole='DENTIST'");
                 command.Parameters.Add("@userID", SqlDbType.VarChar).Value = userId;
                 fillGrid(command);
@@ -131,10 +196,10 @@ namespace QuanLyPhongKhamNhaKhoa.User_Control
                 dataLichHen.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
 
                 // đổi tên cột
-                dataLichHen.Columns["userID"].HeaderText = "Mã nha sĩ";
-                dataLichHen.Columns["fullName"].HeaderText = "Họ và tên";
-                dataLichHen.Columns["phoneNumber"].HeaderText = "Số điện thoại";
-                dataLichHen.Columns["email"].HeaderText = "Email";
+                dataLichHen.Columns["appointmentID"].HeaderText = "Mã cuộc hẹn";
+                dataLichHen.Columns[1].HeaderText = "Tên nha sĩ";
+                dataLichHen.Columns[2].HeaderText = "Tên bệnh nhân";
+                dataLichHen.Columns["persionalID"].HeaderText = "CCCD bệnh nhân";
                 dataLichHen.Columns["appointmentDate"].HeaderText = "Ngày hẹn";
                 dataLichHen.Columns["startTime"].HeaderText = "Thời gian bắt đầu";
                 dataLichHen.Columns["endTime"].HeaderText = "Thời gian kết thúc";
@@ -247,7 +312,6 @@ namespace QuanLyPhongKhamNhaKhoa.User_Control
                 return false;
             }
         }
-
         private void comboBoxBacSi_SelectedValueChanged(object sender, EventArgs e)
         {
             hienThiGridView();
@@ -293,24 +357,25 @@ namespace QuanLyPhongKhamNhaKhoa.User_Control
                 DateTime timeStart = pickTimeStart.Value;
                 DateTime timeEnd = pickTimeEnd.Value;
 
-                Appointment app = new Appointment(appointmentID, patientsID, userID, ngayHen, timeStart, timeEnd, trangThai);
+                string timestart = timeStart.ToString("HH:mm:ss").Trim();
+                string timeend = timeEnd.ToString("HH:mm:ss").Trim();
 
-                if (appDao.insertAppointment(app))
+                if (appDao.insertAppointment(appointmentID, patientsID, userID, ngayHen, timestart, timeend, trangThai))
                 {
                     MessageBox.Show("Thêm cuộc hẹn thành công!", "Add Appointment", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    hienThiGridView();
                 }
                 else
                 {
                     throw new InvalidExistAppointment("Thêm cuộc hẹn thất bại!");
                 }
-
-
-
             }
             catch (Exception ex)
             {
-                MessageBox.Show("ERROR: " + ex.Message, "Add Appointment1", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("ERROR: " + ex.Message, "Add Appointment", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+        
     }
 }

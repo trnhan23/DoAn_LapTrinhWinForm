@@ -44,7 +44,7 @@
             this.radioButtonFemale = new System.Windows.Forms.RadioButton();
             this.radioButtonMale = new System.Windows.Forms.RadioButton();
             this.txtTenBN = new System.Windows.Forms.TextBox();
-            this.textBox5 = new System.Windows.Forms.TextBox();
+            this.txtMaLichHen = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
@@ -59,6 +59,8 @@
             this.label5 = new System.Windows.Forms.Label();
             this.dataLichHen = new System.Windows.Forms.DataGridView();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.pickTimeEnd = new System.Windows.Forms.DateTimePicker();
+            this.pickTimeStart = new System.Windows.Forms.DateTimePicker();
             this.comboBoxTrangThai = new System.Windows.Forms.ComboBox();
             this.label6 = new System.Windows.Forms.Label();
             this.dateTimePickerNgayHen = new System.Windows.Forms.DateTimePicker();
@@ -75,8 +77,8 @@
             this.comboBoxBacSi = new System.Windows.Forms.ComboBox();
             this.label20 = new System.Windows.Forms.Label();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
-            this.pickTimeStart = new System.Windows.Forms.DateTimePicker();
-            this.pickTimeEnd = new System.Windows.Forms.DateTimePicker();
+            this.txtEmailBS = new System.Windows.Forms.TextBox();
+            this.label21 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataLichHen)).BeginInit();
@@ -262,17 +264,17 @@
             this.txtTenBN.Size = new System.Drawing.Size(245, 29);
             this.txtTenBN.TabIndex = 55;
             // 
-            // textBox5
+            // txtMaLichHen
             // 
-            this.textBox5.Enabled = false;
-            this.textBox5.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox5.Location = new System.Drawing.Point(168, 71);
-            this.textBox5.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.textBox5.Multiline = true;
-            this.textBox5.Name = "textBox5";
-            this.textBox5.ReadOnly = true;
-            this.textBox5.Size = new System.Drawing.Size(245, 29);
-            this.textBox5.TabIndex = 52;
+            this.txtMaLichHen.Enabled = false;
+            this.txtMaLichHen.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtMaLichHen.Location = new System.Drawing.Point(168, 71);
+            this.txtMaLichHen.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.txtMaLichHen.Multiline = true;
+            this.txtMaLichHen.Name = "txtMaLichHen";
+            this.txtMaLichHen.ReadOnly = true;
+            this.txtMaLichHen.Size = new System.Drawing.Size(245, 29);
+            this.txtMaLichHen.TabIndex = 52;
             // 
             // label9
             // 
@@ -320,28 +322,34 @@
             // 
             // txtTenBS
             // 
-            this.txtTenBS.Location = new System.Drawing.Point(139, 137);
+            this.txtTenBS.Enabled = false;
+            this.txtTenBS.Location = new System.Drawing.Point(139, 101);
             this.txtTenBS.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtTenBS.Multiline = true;
             this.txtTenBS.Name = "txtTenBS";
+            this.txtTenBS.ReadOnly = true;
             this.txtTenBS.Size = new System.Drawing.Size(245, 29);
             this.txtTenBS.TabIndex = 63;
             // 
             // txtSoDTBS
             // 
-            this.txtSoDTBS.Location = new System.Drawing.Point(139, 191);
+            this.txtSoDTBS.Enabled = false;
+            this.txtSoDTBS.Location = new System.Drawing.Point(139, 144);
             this.txtSoDTBS.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtSoDTBS.Multiline = true;
             this.txtSoDTBS.Name = "txtSoDTBS";
+            this.txtSoDTBS.ReadOnly = true;
             this.txtSoDTBS.Size = new System.Drawing.Size(245, 29);
             this.txtSoDTBS.TabIndex = 64;
             // 
             // txtMaBS
             // 
-            this.txtMaBS.Location = new System.Drawing.Point(139, 82);
+            this.txtMaBS.Enabled = false;
+            this.txtMaBS.Location = new System.Drawing.Point(139, 58);
             this.txtMaBS.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtMaBS.Multiline = true;
             this.txtMaBS.Name = "txtMaBS";
+            this.txtMaBS.ReadOnly = true;
             this.txtMaBS.Size = new System.Drawing.Size(245, 29);
             this.txtMaBS.TabIndex = 65;
             // 
@@ -350,37 +358,39 @@
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.Color.SteelBlue;
-            this.label3.Location = new System.Drawing.Point(17, 146);
+            this.label3.Location = new System.Drawing.Point(17, 110);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(79, 16);
+            this.label3.Size = new System.Drawing.Size(83, 16);
             this.label3.TabIndex = 60;
-            this.label3.Text = "Họ và Tên";
+            this.label3.Text = "Họ và Tên:";
             // 
             // label7
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label7.ForeColor = System.Drawing.Color.SteelBlue;
-            this.label7.Location = new System.Drawing.Point(17, 197);
+            this.label7.Location = new System.Drawing.Point(17, 150);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(102, 16);
+            this.label7.Size = new System.Drawing.Size(109, 16);
             this.label7.TabIndex = 61;
-            this.label7.Text = "Số điện thoại:";
+            this.label7.Text = "Số Điện Thoại:";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.SteelBlue;
-            this.label2.Location = new System.Drawing.Point(17, 94);
+            this.label2.Location = new System.Drawing.Point(17, 70);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(83, 16);
+            this.label2.Size = new System.Drawing.Size(84, 16);
             this.label2.TabIndex = 62;
-            this.label2.Text = "Mã Bác Sĩ:";
+            this.label2.Text = "Mã Nha Sĩ:";
             // 
             // panel2
             // 
             this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel2.Controls.Add(this.txtEmailBS);
+            this.panel2.Controls.Add(this.label21);
             this.panel2.Controls.Add(this.label5);
             this.panel2.Controls.Add(this.txtSoDTBS);
             this.panel2.Controls.Add(this.label7);
@@ -421,6 +431,7 @@
             this.dataLichHen.RowTemplate.Height = 24;
             this.dataLichHen.Size = new System.Drawing.Size(915, 354);
             this.dataLichHen.TabIndex = 60;
+            this.dataLichHen.Click += new System.EventHandler(this.dataLichHen_Click);
             // 
             // panel3
             // 
@@ -429,7 +440,7 @@
             this.panel3.Controls.Add(this.pickTimeStart);
             this.panel3.Controls.Add(this.comboBoxTrangThai);
             this.panel3.Controls.Add(this.label6);
-            this.panel3.Controls.Add(this.textBox5);
+            this.panel3.Controls.Add(this.txtMaLichHen);
             this.panel3.Controls.Add(this.dateTimePickerNgayHen);
             this.panel3.Controls.Add(this.label19);
             this.panel3.Controls.Add(this.label18);
@@ -443,6 +454,30 @@
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(471, 318);
             this.panel3.TabIndex = 44;
+            // 
+            // pickTimeEnd
+            // 
+            this.pickTimeEnd.CustomFormat = "HH:mm";
+            this.pickTimeEnd.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.pickTimeEnd.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.pickTimeEnd.Location = new System.Drawing.Point(168, 228);
+            this.pickTimeEnd.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.pickTimeEnd.Name = "pickTimeEnd";
+            this.pickTimeEnd.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.pickTimeEnd.Size = new System.Drawing.Size(245, 27);
+            this.pickTimeEnd.TabIndex = 68;
+            // 
+            // pickTimeStart
+            // 
+            this.pickTimeStart.CustomFormat = "HH:mm";
+            this.pickTimeStart.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.pickTimeStart.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.pickTimeStart.Location = new System.Drawing.Point(168, 178);
+            this.pickTimeStart.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.pickTimeStart.Name = "pickTimeStart";
+            this.pickTimeStart.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.pickTimeStart.Size = new System.Drawing.Size(245, 27);
+            this.pickTimeStart.TabIndex = 67;
             // 
             // comboBoxTrangThai
             // 
@@ -603,29 +638,27 @@
             this.label20.TabIndex = 62;
             this.label20.Text = "Bác Sĩ";
             // 
-            // pickTimeStart
+            // txtEmailBS
             // 
-            this.pickTimeStart.CustomFormat = "HH:mm:ss";
-            this.pickTimeStart.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.pickTimeStart.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.pickTimeStart.Location = new System.Drawing.Point(168, 178);
-            this.pickTimeStart.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.pickTimeStart.Name = "pickTimeStart";
-            this.pickTimeStart.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.pickTimeStart.Size = new System.Drawing.Size(245, 27);
-            this.pickTimeStart.TabIndex = 67;
+            this.txtEmailBS.Enabled = false;
+            this.txtEmailBS.Location = new System.Drawing.Point(139, 184);
+            this.txtEmailBS.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.txtEmailBS.Multiline = true;
+            this.txtEmailBS.Name = "txtEmailBS";
+            this.txtEmailBS.ReadOnly = true;
+            this.txtEmailBS.Size = new System.Drawing.Size(245, 29);
+            this.txtEmailBS.TabIndex = 67;
             // 
-            // pickTimeEnd
+            // label21
             // 
-            this.pickTimeEnd.CustomFormat = "HH:mm:ss";
-            this.pickTimeEnd.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.pickTimeEnd.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.pickTimeEnd.Location = new System.Drawing.Point(168, 228);
-            this.pickTimeEnd.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.pickTimeEnd.Name = "pickTimeEnd";
-            this.pickTimeEnd.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.pickTimeEnd.Size = new System.Drawing.Size(245, 27);
-            this.pickTimeEnd.TabIndex = 68;
+            this.label21.AutoSize = true;
+            this.label21.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label21.ForeColor = System.Drawing.Color.SteelBlue;
+            this.label21.Location = new System.Drawing.Point(17, 190);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(50, 16);
+            this.label21.TabIndex = 66;
+            this.label21.Text = "Email:";
             // 
             // UC_LichHen
             // 
@@ -675,7 +708,7 @@
         private System.Windows.Forms.TextBox txtDiaChiBN;
         private System.Windows.Forms.TextBox txtSoDTBN;
         private System.Windows.Forms.TextBox txtCCCDBN;
-        private System.Windows.Forms.TextBox textBox5;
+        private System.Windows.Forms.TextBox txtMaLichHen;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label11;
@@ -714,5 +747,7 @@
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
         private System.Windows.Forms.DateTimePicker pickTimeEnd;
         private System.Windows.Forms.DateTimePicker pickTimeStart;
+        private System.Windows.Forms.TextBox txtEmailBS;
+        private System.Windows.Forms.Label label21;
     }
 }
