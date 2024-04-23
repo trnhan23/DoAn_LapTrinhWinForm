@@ -1,6 +1,7 @@
 ﻿using Guna.UI2.WinForms;
 using QuanLyPhongKhamNhaKhoa.Dao;
 using QuanLyPhongKhamNhaKhoa.Entity;
+using QuanLyPhongKhamNhaKhoa.User_Control;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -11,7 +12,9 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web.UI.WebControls;
 using System.Windows.Forms;
+using Image = System.Drawing.Image;
 
 namespace QuanLyPhongKhamNhaKhoa
 {
@@ -30,7 +33,6 @@ namespace QuanLyPhongKhamNhaKhoa
             uC_NhanVien2.Visible = false;
             picture = user.Image;
             xuLyAvatar(picture);
-
         }
         public void xuLyAvatar(MemoryStream picture)
         {
@@ -126,8 +128,17 @@ namespace QuanLyPhongKhamNhaKhoa
             Guna2Button clickedButton = (Guna2Button)sender;
             clickedButton.FillColor = Color.LightGray;
 
-            uC_LichHen1.Visible = true;
-            uC_LichHen1.BringToFront();
+            /*uC_LichHen1.Visible = true;
+            uC_LichHen1.BringToFront();*/
+            if (!panel3.Controls.Contains(UC_LichHenTest.Instance))
+            {
+                panel3.Controls.Add(UC_LichHenTest.Instance);
+                UC_LichHenTest.Instance.Dock = DockStyle.Fill;
+                UC_LichHenTest.Instance.BringToFront();
+            }
+            else
+                UC_LichHenTest.Instance.BringToFront();
+
         }
 
         private void btnBaoCao_Click(object sender, EventArgs e)

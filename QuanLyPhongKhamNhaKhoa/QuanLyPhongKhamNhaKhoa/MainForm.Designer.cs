@@ -56,6 +56,7 @@ namespace QuanLyPhongKhamNhaKhoa
             this.uC_BenhNhan1 = new QuanLyPhongKhamNhaKhoa.User_Control.UC_BenhNhan();
             this.uC_NhanVien2 = new QuanLyPhongKhamNhaKhoa.User_Control.UC_NhanVien();
             this.uC_NhanVien1 = new QuanLyPhongKhamNhaKhoa.User_Control.UC_NhanVien();
+            this.uC_LichHenTest = new QuanLyPhongKhamNhaKhoa.User_Control.UC_LichHenTest();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.guna2PictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picBoxNen)).BeginInit();
@@ -426,6 +427,13 @@ namespace QuanLyPhongKhamNhaKhoa
             this.uC_NhanVien1.TabIndex = 0;
             this.uC_NhanVien1.Visible = false;
             // 
+            // uC_LichHenTest
+            // 
+            this.uC_LichHenTest.Location = new System.Drawing.Point(0, 0);
+            this.uC_LichHenTest.Name = "uC_LichHenTest";
+            this.uC_LichHenTest.Size = new System.Drawing.Size(1564, 818);
+            this.uC_LichHenTest.TabIndex = 0;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -483,5 +491,7 @@ namespace QuanLyPhongKhamNhaKhoa
         private User_Control.UC_NhanVien uC_NhanVien2;
         private User_Control.UC_NhanVien uC_NhanVien1;
         private User_Control.UC_TuyChonTaiKhoan uC_TuyChonTaiKhoan1;
+
+        private User_Control.UC_LichHenTest uC_LichHenTest;
     }
 }

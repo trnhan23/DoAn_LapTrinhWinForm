@@ -63,3 +63,5 @@ E:\SPKT\NAM3_HK2\WinForm\DoAn_LapTrinhWinForm\QuanLyPhongKhamNhaKhoa\QuanLyPhong
 E:\SPKT\NAM3_HK2\WinForm\DoAn_LapTrinhWinForm\QuanLyPhongKhamNhaKhoa\QuanLyPhongKhamNhaKhoa\obj\Debug\QuanLyPhongKhamNhaKhoa.csproj.CopyComplete
 E:\SPKT\NAM3_HK2\WinForm\DoAn_LapTrinhWinForm\QuanLyPhongKhamNhaKhoa\QuanLyPhongKhamNhaKhoa\obj\Debug\QuanLyPhongKhamNhaKhoa.exe
 E:\SPKT\NAM3_HK2\WinForm\DoAn_LapTrinhWinForm\QuanLyPhongKhamNhaKhoa\QuanLyPhongKhamNhaKhoa\obj\Debug\QuanLyPhongKhamNhaKhoa.pdb
+E:\SPKT\NAM3_HK2\WinForm\DoAn_LapTrinhWinForm\QuanLyPhongKhamNhaKhoa\QuanLyPhongKhamNhaKhoa\obj\Debug\QuanLyPhongKhamNhaKhoa.User_Control.UC_LichHenTest.resources
+E:\SPKT\NAM3_HK2\WinForm\DoAn_LapTrinhWinForm\QuanLyPhongKhamNhaKhoa\QuanLyPhongKhamNhaKhoa\obj\Debug\QuanLyPhongKhamNhaKhoa.Test.resources
