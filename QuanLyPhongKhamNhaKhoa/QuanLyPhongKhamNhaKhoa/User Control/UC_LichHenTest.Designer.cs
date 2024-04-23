@@ -70,6 +70,7 @@
             this.dtpkDate.Name = "dtpkDate";
             this.dtpkDate.Size = new System.Drawing.Size(163, 30);
             this.dtpkDate.TabIndex = 66;
+            this.dtpkDate.ValueChanged += new System.EventHandler(this.dtpkDate_ValueChanged);
             // 
             // cBoxNotify
             // 

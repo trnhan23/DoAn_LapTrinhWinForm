@@ -128,5 +128,11 @@ namespace QuanLyPhongKhamNhaKhoa.User_Control
                 monthYearLabel.Text = currentDate.ToString("MMMM yyyy");
             }
         }
+
+        private void dtpkDate_ValueChanged(object sender, EventArgs e)
+        {
+            currentDate = dtpkDate.Value;
+            UpdateCalendar();
+        }
     }
 }
