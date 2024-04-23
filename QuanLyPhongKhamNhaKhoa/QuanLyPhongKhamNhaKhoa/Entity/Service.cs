@@ -10,10 +10,19 @@ namespace QuanLyPhongKhamNhaKhoa.Entity
     {
         private string serviceID;
         private string serviceName;
+        private string unit;
         private float cost;
-
-        public string ServiceID { get { return serviceID; } set { serviceID = value; } }
-        public string ServiceName { get { return serviceName; } set { serviceName = value; } }
-        public float Cost { get { return cost; } set { cost = value; } }
+        public Service() { }
+        public Service(string serviceID, string serviceName, string unit, float cost)
+        {
+            this.serviceID = serviceID;
+            this.serviceName = serviceName;
+            this.unit = unit;
+            this.cost = cost;
+        }
+        public string ServiceID { get; set; }
+        public string ServiceName { get; set; }
+        public string Unit { get; set; }
+        public float Cost { get; set; }
     }
 }

@@ -56,6 +56,8 @@
             this.label7 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.txtEmailBS = new System.Windows.Forms.TextBox();
+            this.label21 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.dataLichHen = new System.Windows.Forms.DataGridView();
             this.panel3 = new System.Windows.Forms.Panel();
@@ -77,8 +79,7 @@
             this.comboBoxBacSi = new System.Windows.Forms.ComboBox();
             this.label20 = new System.Windows.Forms.Label();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
-            this.txtEmailBS = new System.Windows.Forms.TextBox();
-            this.label21 = new System.Windows.Forms.Label();
+            this.btnReset = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataLichHen)).BeginInit();
@@ -217,8 +218,9 @@
             // 
             // dateTimePickerNgaySinh
             // 
+            this.dateTimePickerNgaySinh.CustomFormat = "dd/MM/yyyy";
             this.dateTimePickerNgaySinh.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dateTimePickerNgaySinh.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dateTimePickerNgaySinh.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dateTimePickerNgaySinh.Location = new System.Drawing.Point(187, 263);
             this.dateTimePickerNgaySinh.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.dateTimePickerNgaySinh.Name = "dateTimePickerNgaySinh";
@@ -406,6 +408,28 @@
             this.panel2.Size = new System.Drawing.Size(407, 228);
             this.panel2.TabIndex = 44;
             // 
+            // txtEmailBS
+            // 
+            this.txtEmailBS.Enabled = false;
+            this.txtEmailBS.Location = new System.Drawing.Point(139, 184);
+            this.txtEmailBS.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.txtEmailBS.Multiline = true;
+            this.txtEmailBS.Name = "txtEmailBS";
+            this.txtEmailBS.ReadOnly = true;
+            this.txtEmailBS.Size = new System.Drawing.Size(245, 29);
+            this.txtEmailBS.TabIndex = 67;
+            // 
+            // label21
+            // 
+            this.label21.AutoSize = true;
+            this.label21.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label21.ForeColor = System.Drawing.Color.SteelBlue;
+            this.label21.Location = new System.Drawing.Point(17, 190);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(50, 16);
+            this.label21.TabIndex = 66;
+            this.label21.Text = "Email:";
+            // 
             // label5
             // 
             this.label5.AutoSize = true;
@@ -464,6 +488,7 @@
             this.pickTimeEnd.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pickTimeEnd.Name = "pickTimeEnd";
             this.pickTimeEnd.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.pickTimeEnd.ShowUpDown = true;
             this.pickTimeEnd.Size = new System.Drawing.Size(245, 27);
             this.pickTimeEnd.TabIndex = 68;
             // 
@@ -476,6 +501,7 @@
             this.pickTimeStart.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pickTimeStart.Name = "pickTimeStart";
             this.pickTimeStart.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.pickTimeStart.ShowUpDown = true;
             this.pickTimeStart.Size = new System.Drawing.Size(245, 27);
             this.pickTimeStart.TabIndex = 67;
             // 
@@ -576,7 +602,7 @@
             this.btnSuaLichHen.BackColor = System.Drawing.Color.SteelBlue;
             this.btnSuaLichHen.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSuaLichHen.ForeColor = System.Drawing.Color.White;
-            this.btnSuaLichHen.Location = new System.Drawing.Point(1205, 214);
+            this.btnSuaLichHen.Location = new System.Drawing.Point(1205, 190);
             this.btnSuaLichHen.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnSuaLichHen.Name = "btnSuaLichHen";
             this.btnSuaLichHen.Size = new System.Drawing.Size(149, 38);
@@ -589,7 +615,7 @@
             this.btnHuyLichHen.BackColor = System.Drawing.Color.SteelBlue;
             this.btnHuyLichHen.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnHuyLichHen.ForeColor = System.Drawing.Color.White;
-            this.btnHuyLichHen.Location = new System.Drawing.Point(1205, 295);
+            this.btnHuyLichHen.Location = new System.Drawing.Point(1205, 251);
             this.btnHuyLichHen.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnHuyLichHen.Name = "btnHuyLichHen";
             this.btnHuyLichHen.Size = new System.Drawing.Size(149, 38);
@@ -638,32 +664,25 @@
             this.label20.TabIndex = 62;
             this.label20.Text = "Bác Sĩ";
             // 
-            // txtEmailBS
+            // btnReset
             // 
-            this.txtEmailBS.Enabled = false;
-            this.txtEmailBS.Location = new System.Drawing.Point(139, 184);
-            this.txtEmailBS.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.txtEmailBS.Multiline = true;
-            this.txtEmailBS.Name = "txtEmailBS";
-            this.txtEmailBS.ReadOnly = true;
-            this.txtEmailBS.Size = new System.Drawing.Size(245, 29);
-            this.txtEmailBS.TabIndex = 67;
-            // 
-            // label21
-            // 
-            this.label21.AutoSize = true;
-            this.label21.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label21.ForeColor = System.Drawing.Color.SteelBlue;
-            this.label21.Location = new System.Drawing.Point(17, 190);
-            this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(50, 16);
-            this.label21.TabIndex = 66;
-            this.label21.Text = "Email:";
+            this.btnReset.BackColor = System.Drawing.Color.SteelBlue;
+            this.btnReset.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnReset.ForeColor = System.Drawing.Color.White;
+            this.btnReset.Location = new System.Drawing.Point(1205, 313);
+            this.btnReset.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnReset.Name = "btnReset";
+            this.btnReset.Size = new System.Drawing.Size(149, 38);
+            this.btnReset.TabIndex = 65;
+            this.btnReset.Text = "Reset";
+            this.btnReset.UseVisualStyleBackColor = false;
+            this.btnReset.Click += new System.EventHandler(this.btnReset_Click);
             // 
             // UC_LichHen
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.btnReset);
             this.Controls.Add(this.comboBoxBacSi);
             this.Controls.Add(this.btnDatLich);
             this.Controls.Add(this.btnSuaLichHen);
@@ -749,5 +768,6 @@
         private System.Windows.Forms.DateTimePicker pickTimeStart;
         private System.Windows.Forms.TextBox txtEmailBS;
         private System.Windows.Forms.Label label21;
+        private System.Windows.Forms.Button btnReset;
     }
 }

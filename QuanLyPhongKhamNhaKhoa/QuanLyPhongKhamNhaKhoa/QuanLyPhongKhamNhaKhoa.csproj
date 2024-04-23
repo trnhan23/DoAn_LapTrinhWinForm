@@ -62,6 +62,7 @@
     <Compile Include="Dao\BillDao.cs" />
     <Compile Include="Dao\MedicineDao.cs" />
     <Compile Include="Dao\PatientsDao.cs" />
+    <Compile Include="Dao\ServiceDao.cs" />
     <Compile Include="Dao\UserDao.cs" />
     <Compile Include="DentalClinicDataSetDSNV.Designer.cs">
       <AutoGen>True</AutoGen>

@@ -6,6 +6,11 @@ using System.Threading.Tasks;
 
 namespace QuanLyPhongKhamNhaKhoa.Validation
 {
+    class InvalidService : Exception
+    {
+        public InvalidService() : base("Đã tồn tại mã cuộc hẹn này!") { }
+        public InvalidService(string message) : base(message) { }
+    }
     class InvalidExistAppointment : Exception
     {
         public InvalidExistAppointment() : base("Đã tồn tại mã cuộc hẹn này!") { }

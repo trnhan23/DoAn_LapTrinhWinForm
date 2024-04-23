@@ -6,6 +6,7 @@ using System.Data;
 using System.Linq;
 using System.Globalization;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using System.Windows.Forms;
 
 namespace QuanLyPhongKhamNhaKhoa.Dao
 {
@@ -13,6 +14,33 @@ namespace QuanLyPhongKhamNhaKhoa.Dao
     {
         SQLConnectionData mydb = new SQLConnectionData();
         private Random random = new Random();
+
+        public bool kiemTraThoiGian(string timeStart, string timeEnd, string userID)
+        {
+            try
+            {
+                mydb.openConnection();
+                SqlCommand command = new SqlCommand("SELECT COUNT(*) FROM Appointment " +
+                    "WHERE userID=@userID AND " +
+                    "((CAST(@timeStart AS time) BETWEEN startTime AND endTime) OR " +
+                    "(CAST(@timeEnd AS time) BETWEEN startTime AND endTime) OR " +
+                    "(startTime BETWEEN CAST(@timeStart AS time) AND CAST(@timeEnd AS time)) OR " +
+                    "(endTime BETWEEN CAST(@timeStart AS time) AND CAST(@timeEnd AS time)))", mydb.getConnection);
+
+                command.Parameters.Add("@timeStart", SqlDbType.Time).Value = TimeSpan.Parse(timeStart);
+                command.Parameters.Add("@timeEnd", SqlDbType.Time).Value = TimeSpan.Parse(timeEnd);
+                command.Parameters.Add("@userID", SqlDbType.VarChar).Value = userID;
+
+                int count = (int)command.ExecuteScalar();
+                mydb.closeConnection();
+                return count > 0;
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show("ERROR: Loi kiểm tra thời gian" + ex.Message, "Add Appointment", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return true;
+            }
+        }
 
         public string taoMaAppointment()
         {

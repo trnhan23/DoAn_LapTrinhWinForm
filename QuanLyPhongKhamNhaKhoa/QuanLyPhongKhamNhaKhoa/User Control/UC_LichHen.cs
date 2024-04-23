@@ -283,6 +283,17 @@ namespace QuanLyPhongKhamNhaKhoa.User_Control
                 MessageBox.Show("ERROR: " + ex.Message, "Add Patients", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+        public void capNhatMaBenhNhan(string patientsID)
+        {
+            SqlCommand command = new SqlCommand("SELECT patientsID FROM Patients WHERE persionalID=@persionalID");
+            command.Parameters.Add("@persionalID", SqlDbType.VarChar).Value = txtCCCDBN.Text.Trim();
+            DataTable table = patientsDao.getPatients(command);
+            if (table.Rows.Count > 0)
+            {
+                patientsID = table.Rows[0]["patientsID"].ToString().Trim();
+                txtMaBN.Text = patientsID;
+            }
+        }
         bool verifAppointment()
         {
             if ((dateTimePickerNgayHen.Text.Trim() == "")
@@ -328,16 +339,8 @@ namespace QuanLyPhongKhamNhaKhoa.User_Control
                 if (!patientsDao.existPatients(patientsID))
                 {
                     themBenhNhan();
-
                     //sau khi thêm xong thì cập nhật lại mã bệnh nhân lên text
-                    SqlCommand command = new SqlCommand("SELECT patientsID FROM Patients WHERE persionalID=@persionalID");
-                    command.Parameters.Add("@persionalID", SqlDbType.VarChar).Value = txtCCCDBN.Text.Trim();
-                    DataTable table = patientsDao.getPatients(command);
-                    if (table.Rows.Count > 0)
-                    {
-                        patientsID = table.Rows[0]["patientsID"].ToString().Trim();
-                        txtMaBN.Text = patientsID;
-                    }
+                    capNhatMaBenhNhan(patientsID);
                 }
 
                 if (verifAppointment())
@@ -356,9 +359,14 @@ namespace QuanLyPhongKhamNhaKhoa.User_Control
 
                 DateTime timeStart = pickTimeStart.Value;
                 DateTime timeEnd = pickTimeEnd.Value;
-
+                
                 string timestart = timeStart.ToString("HH:mm:ss").Trim();
                 string timeend = timeEnd.ToString("HH:mm:ss").Trim();
+                //Kiểm tra thời gian bị trùng
+                if (appDao.kiemTraThoiGian(timestart, timeend, userID))
+                {
+                    throw new InvalidExistAppointment("Thời gian hẹn đã bị trùng với người khác!\nVui lòng chọn khoảng thời gian khác!");
+                }
 
                 if (appDao.insertAppointment(appointmentID, patientsID, userID, ngayHen, timestart, timeend, trangThai))
                 {
@@ -376,6 +384,13 @@ namespace QuanLyPhongKhamNhaKhoa.User_Control
             }
         }
 
-        
+        private void btnReset_Click(object sender, EventArgs e)
+        {
+            txtMaLichHen.Text = "";
+            dateTimePickerNgayHen.Value = DateTime.Now;
+            pickTimeStart.Value = DateTime.Now;
+            pickTimeEnd.Value = DateTime.Now;
+            comboBoxTrangThai.Text = "Đặt lịch";
+        }
     }
 }
