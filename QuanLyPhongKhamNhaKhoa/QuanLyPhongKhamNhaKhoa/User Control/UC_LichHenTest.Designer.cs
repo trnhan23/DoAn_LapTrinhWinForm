@@ -33,6 +33,7 @@
             this.dtpkDate = new System.Windows.Forms.DateTimePicker();
             this.cBoxNotify = new System.Windows.Forms.CheckBox();
             this.panelDate = new System.Windows.Forms.Panel();
+            this.cbNhaSi = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
             // btnDatLich
@@ -76,7 +77,7 @@
             // 
             this.cBoxNotify.AutoSize = true;
             this.cBoxNotify.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cBoxNotify.Location = new System.Drawing.Point(178, 25);
+            this.cBoxNotify.Location = new System.Drawing.Point(174, 31);
             this.cBoxNotify.Name = "cBoxNotify";
             this.cBoxNotify.Size = new System.Drawing.Size(74, 24);
             this.cBoxNotify.TabIndex = 67;
@@ -85,15 +86,26 @@
             // 
             // panelDate
             // 
-            this.panelDate.Location = new System.Drawing.Point(18, 59);
+            this.panelDate.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panelDate.Location = new System.Drawing.Point(18, 104);
             this.panelDate.Name = "panelDate";
-            this.panelDate.Size = new System.Drawing.Size(1530, 740);
+            this.panelDate.Size = new System.Drawing.Size(1530, 711);
             this.panelDate.TabIndex = 68;
+            // 
+            // cbNhaSi
+            // 
+            this.cbNhaSi.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbNhaSi.FormattingEnabled = true;
+            this.cbNhaSi.Location = new System.Drawing.Point(284, 27);
+            this.cbNhaSi.Name = "cbNhaSi";
+            this.cbNhaSi.Size = new System.Drawing.Size(249, 30);
+            this.cbNhaSi.TabIndex = 69;
             // 
             // UC_LichHenTest
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.cbNhaSi);
             this.Controls.Add(this.panelDate);
             this.Controls.Add(this.cBoxNotify);
             this.Controls.Add(this.dtpkDate);
@@ -101,6 +113,7 @@
             this.Controls.Add(this.label1);
             this.Name = "UC_LichHenTest";
             this.Size = new System.Drawing.Size(1564, 818);
+            this.Load += new System.EventHandler(this.UC_LichHenTest_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -112,5 +125,6 @@
         private System.Windows.Forms.DateTimePicker dtpkDate;
         private System.Windows.Forms.CheckBox cBoxNotify;
         private System.Windows.Forms.Panel panelDate;
+        private System.Windows.Forms.ComboBox cbNhaSi;
     }
 }

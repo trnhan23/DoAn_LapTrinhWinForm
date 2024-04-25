@@ -141,6 +141,12 @@
     <Compile Include="User Control\UC_NhanVien.Designer.cs">
       <DependentUpon>UC_NhanVien.cs</DependentUpon>
     </Compile>
+    <Compile Include="User Control\UC_PatientAppointment.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="User Control\UC_PatientAppointment.designer.cs">
+      <DependentUpon>UC_PatientAppointment.cs</DependentUpon>
+    </Compile>
     <Compile Include="User Control\UC_TuyChonTaiKhoan.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -190,6 +196,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="User Control\UC_NhanVien.resx">
       <DependentUpon>UC_NhanVien.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="User Control\UC_PatientAppointment.resx">
+      <DependentUpon>UC_PatientAppointment.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="User Control\UC_TuyChonTaiKhoan.resx">
       <DependentUpon>UC_TuyChonTaiKhoan.cs</DependentUpon>

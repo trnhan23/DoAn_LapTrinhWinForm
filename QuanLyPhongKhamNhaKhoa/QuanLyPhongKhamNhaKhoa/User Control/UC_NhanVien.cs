@@ -311,7 +311,7 @@ namespace QuanLyPhongKhamNhaKhoa.User_Control
                 }
                 int born_year = dateTimePickerNgSinh.Value.Year;
                 int this_year = DateTime.Now.Year;
-                if (((this_year - born_year) < 22))
+                if ((this_year - born_year) < 22)
                 {
                     throw new InvalidBirthdate(22);
                 }
