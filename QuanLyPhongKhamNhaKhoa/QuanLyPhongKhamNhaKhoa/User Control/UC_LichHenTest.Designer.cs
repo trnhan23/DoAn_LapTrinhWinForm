@@ -34,6 +34,7 @@
             this.cBoxNotify = new System.Windows.Forms.CheckBox();
             this.panelDate = new System.Windows.Forms.Panel();
             this.cbNhaSi = new System.Windows.Forms.ComboBox();
+            this.label2 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // btnDatLich
@@ -98,13 +99,25 @@
             this.cbNhaSi.FormattingEnabled = true;
             this.cbNhaSi.Location = new System.Drawing.Point(284, 27);
             this.cbNhaSi.Name = "cbNhaSi";
-            this.cbNhaSi.Size = new System.Drawing.Size(249, 30);
+            this.cbNhaSi.Size = new System.Drawing.Size(229, 30);
             this.cbNhaSi.TabIndex = 69;
+            this.cbNhaSi.SelectedValueChanged += new System.EventHandler(this.cbNhaSi_SelectedValueChanged);
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(530, 33);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(112, 22);
+            this.label2.TabIndex = 70;
+            this.label2.Text = "Chọn Nha Sĩ";
             // 
             // UC_LichHenTest
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.label2);
             this.Controls.Add(this.cbNhaSi);
             this.Controls.Add(this.panelDate);
             this.Controls.Add(this.cBoxNotify);
@@ -126,5 +139,6 @@
         private System.Windows.Forms.CheckBox cBoxNotify;
         private System.Windows.Forms.Panel panelDate;
         private System.Windows.Forms.ComboBox cbNhaSi;
+        private System.Windows.Forms.Label label2;
     }
 }

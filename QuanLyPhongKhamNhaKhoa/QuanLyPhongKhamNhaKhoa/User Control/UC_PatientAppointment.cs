@@ -20,7 +20,6 @@ namespace QuanLyPhongKhamNhaKhoa.User_Control
         public string TextFullName { get; set; }
         public string TextTime { get; set; }
         public string Status { get; set; }
-
         public string AppointmentID { get; set; }
 
         private void UC_PatientAppointment_Load(object sender, EventArgs e)
