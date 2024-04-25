@@ -392,5 +392,10 @@ namespace QuanLyPhongKhamNhaKhoa.User_Control
             pickTimeEnd.Value = DateTime.Now;
             comboBoxTrangThai.Text = "Đặt lịch";
         }
+
+        private void comboBoxBacSi_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

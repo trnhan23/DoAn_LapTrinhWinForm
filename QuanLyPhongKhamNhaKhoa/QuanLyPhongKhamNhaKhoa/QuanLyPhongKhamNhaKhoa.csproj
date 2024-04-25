@@ -78,6 +78,12 @@
     <Compile Include="Entity\Service_Treatment.cs" />
     <Compile Include="Entity\Treatment.cs" />
     <Compile Include="Entity\User.cs" />
+    <Compile Include="FormXuLyLichHen\FormThemLichHen.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormXuLyLichHen\FormThemLichHen.Designer.cs">
+      <DependentUpon>FormThemLichHen.cs</DependentUpon>
+    </Compile>
     <Compile Include="LoginForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -158,6 +164,9 @@
     <EmbeddedResource Include="AccountInfoForm.resx">
       <DependentUpon>AccountInfoForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormXuLyLichHen\FormThemLichHen.resx">
+      <DependentUpon>FormThemLichHen.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="LoginForm.resx">
       <DependentUpon>LoginForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -172,6 +181,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <EmbeddedResource Include="Test.resx">
       <DependentUpon>Test.cs</DependentUpon>
@@ -233,11 +243,14 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+    <Content Include="image\add.png" />
     <Content Include="image\avatar.png" />
     <Content Include="image\bacsi.jpg" />
     <Content Include="image\dieutri.png" />
     <Content Include="image\logo.png" />
+    <Content Include="image\search.png" />
     <Content Include="image\user.jpg" />
+    <Content Include="image\x.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

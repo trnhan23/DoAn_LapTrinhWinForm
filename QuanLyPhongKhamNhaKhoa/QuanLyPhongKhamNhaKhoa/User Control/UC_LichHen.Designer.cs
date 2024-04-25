@@ -651,6 +651,7 @@
             this.comboBoxBacSi.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.comboBoxBacSi.Size = new System.Drawing.Size(251, 30);
             this.comboBoxBacSi.TabIndex = 64;
+            this.comboBoxBacSi.SelectedIndexChanged += new System.EventHandler(this.comboBoxBacSi_SelectedIndexChanged);
             this.comboBoxBacSi.SelectedValueChanged += new System.EventHandler(this.comboBoxBacSi_SelectedValueChanged);
             // 
             // label20

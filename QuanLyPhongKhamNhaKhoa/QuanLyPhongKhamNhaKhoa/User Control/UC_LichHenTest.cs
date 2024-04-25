@@ -1,5 +1,6 @@
 ﻿using QuanLyPhongKhamNhaKhoa.Dao;
 using QuanLyPhongKhamNhaKhoa.Entity;
+using QuanLyPhongKhamNhaKhoa.FormXuLyLichHen;
 using QuanLyPhongKhamNhaKhoa.Validation;
 using System;
 using System.Collections.Generic;
@@ -295,6 +296,16 @@ namespace QuanLyPhongKhamNhaKhoa.User_Control
                 selectedUserID = selectedUser.Value.ToString();
                 UpdateCalendar();
             }
+        }
+
+        private void btnDatLich_Click(object sender, EventArgs e)
+        {
+            FormThemLichHen themLichHen = new FormThemLichHen();
+            themLichHen.fullNameNS = cbNhaSi.Text.Trim();
+            var selectedUser = (dynamic)cbNhaSi.SelectedItem;
+            selectedUserID = selectedUser.Value.ToString();
+            themLichHen.userIDNS = selectedUserID;
+            themLichHen.ShowDialog();
         }
     }
 }

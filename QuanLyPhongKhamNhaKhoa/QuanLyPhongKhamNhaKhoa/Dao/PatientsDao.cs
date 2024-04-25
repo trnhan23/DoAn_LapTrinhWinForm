@@ -136,7 +136,7 @@ namespace QuanLyPhongKhamNhaKhoa.Dao
             command.Parameters.Add("@image", SqlDbType.Image).Value = patients.Image.ToArray();
 
             mydb.openConnection();
-            if ((command.ExecuteNonQuery() == 1))
+            if (command.ExecuteNonQuery() == 1)
             {
                 mydb.closeConnection();
                 return true;

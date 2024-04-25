@@ -49,6 +49,7 @@
             this.btnDatLich.TabIndex = 64;
             this.btnDatLich.Text = "Đặt lịch ";
             this.btnDatLich.UseVisualStyleBackColor = false;
+            this.btnDatLich.Click += new System.EventHandler(this.btnDatLich_Click);
             // 
             // label1
             // 
