@@ -1,18 +1,13 @@
 ﻿using QuanLyPhongKhamNhaKhoa.Dao;
-using QuanLyPhongKhamNhaKhoa.Entity;
 using QuanLyPhongKhamNhaKhoa.Validation;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
 using System.Globalization;
 using System.IO;
-using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace QuanLyPhongKhamNhaKhoa.FormXuLyLichHen
@@ -45,33 +40,56 @@ namespace QuanLyPhongKhamNhaKhoa.FormXuLyLichHen
             cbTime.Items.Clear();
             string dateString = dateTPKLichHen.Value.ToString("dd/MM/yyyy");
             DateTime date = DateTime.ParseExact(dateString, "dd/MM/yyyy", CultureInfo.InvariantCulture);
+            DateTime thoiGianHienTai = DateTime.Now;
 
-            List<int> hourTimeList = new List<int>();
-            SqlCommand command = new SqlCommand(@"SELECT startTime FROM Appointment WHERE userID=@userID AND appointmentDate=@appointmentDate");
-            command.Parameters.Add("@userID", SqlDbType.VarChar).Value = userIDNS.Trim();
-            command.Parameters.Add("@appointmentDate", SqlDbType.DateTime).Value = date;
-
-            DataTable table = appDao.getAppointment(command);
-            if (table.Rows.Count > 0)
+            if (thoiGianHienTai <= date)
             {
-                foreach (DataRow row in table.Rows)
+                cbTime.Enabled = true;
+                panelDichVu.Controls.Clear();
+                List<int> hourTimeList = new List<int>();
+                SqlCommand command = new SqlCommand(@"SELECT startTime FROM Appointment WHERE userID=@userID AND appointmentDate=@appointmentDate");
+                command.Parameters.Add("@userID", SqlDbType.VarChar).Value = userIDNS.Trim();
+                command.Parameters.Add("@appointmentDate", SqlDbType.DateTime).Value = date;
+
+                DataTable table = appDao.getAppointment(command);
+                if (table.Rows.Count > 0)
                 {
-                    TimeSpan startTime = (TimeSpan)row["startTime"];
-                    int hour = startTime.Hours;
-                    hourTimeList.Add(hour);
+                    foreach (DataRow row in table.Rows)
+                    {
+                        TimeSpan startTime = (TimeSpan)row["startTime"];
+                        int hour = startTime.Hours;
+                        hourTimeList.Add(hour);
+                    }
+                }
+
+                for (int i = 8; i < 17; i++)
+                {
+                    if (!hourTimeList.Contains(i) && i != 12)
+                    {
+                        string temp = i.ToString() + "h - " + (i + 1).ToString() + "h";
+                        cbTime.Items.Add(temp);
+                    }
                 }
             }
-
-            for (int i = 8; i < 17; i++)
+            else
             {
-                if (!hourTimeList.Contains(i) && i != 12)
-                {
-                    string temp = i.ToString() + "h - " + (i + 1).ToString() + "h";
-                    cbTime.Items.Add(temp);
-                }
+                cbTime.Enabled = false;
+                panelDichVu.Controls.Clear();
+                Label labelThongBao = new Label();
+                labelThongBao.Text = "Thời gian đặt lịch không hợp lệ.";
+
+                panelDichVu.Controls.Add(labelThongBao);
+                labelThongBao.Location = new Point(10, 10);
+                labelThongBao.ForeColor = Color.Gold;
+                labelThongBao.Font = new Font(labelThongBao.Font.FontFamily, 13, FontStyle.Bold);
+                panelDichVu.Controls.Add(labelThongBao);
+                labelThongBao.AutoSize = true;
+                int x = (panelDichVu.Width - labelThongBao.Width) / 2;
+                int y = (panelDichVu.Height - labelThongBao.Height) / 2;
+                labelThongBao.Location = new Point(x, y);
             }
         }
-
+        
         private void btnCancel_Click(object sender, EventArgs e)
         {
             this.Close();
@@ -96,7 +114,6 @@ namespace QuanLyPhongKhamNhaKhoa.FormXuLyLichHen
                 txtSDTBN.Text = "";
             }
         }
-        
         public void themBenhNhan()
         {
             try
@@ -108,6 +125,18 @@ namespace QuanLyPhongKhamNhaKhoa.FormXuLyLichHen
                 string fullName = txtTenBN.Text.Trim();
                 string persionalID = txtCCCD.Text.Trim();
                 string phone = txtSDTBN.Text.Trim();
+                if (!Regex.IsMatch(fullName, @"^[\p{L}\s]+$"))
+                {
+                    throw new InvalidName();
+                }
+                if (!Regex.IsMatch(persionalID, @"^\d{12}$"))
+                {
+                    throw new InvalidPersionalID();
+                }
+                if (!Regex.IsMatch(phone, @"^0\d{9}$"))
+                {
+                    throw new InvalidSDT();
+                }
                 //kiểm tra cccd đã tồn tại hay chưa
                 if (patientsDao.existPersionalIDPatients(persionalID))
                 {
@@ -147,7 +176,6 @@ namespace QuanLyPhongKhamNhaKhoa.FormXuLyLichHen
                 MessageBox.Show("ERROR: " + ex.Message, "Add Patients", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-        
         bool verifBenhNhan()
         {
             if ((txtTenBN.Text.Trim() == "")
@@ -207,6 +235,22 @@ namespace QuanLyPhongKhamNhaKhoa.FormXuLyLichHen
         private void dateTPKLichHen_ValueChanged(object sender, EventArgs e)
         {
             taoThoiGianChoCbTime();
+        }
+
+        private void pBThemDichVu_Click(object sender, EventArgs e)
+        {
+            themDichVu();
+        }
+
+        private void lblThemDichVu_Click(object sender, EventArgs e)
+        {
+            themDichVu();
+        }
+
+        private void themDichVu()
+        {
+            FormChonDichVu formChonDichVu = new FormChonDichVu();
+            formChonDichVu.ShowDialog();
         }
     }
 }

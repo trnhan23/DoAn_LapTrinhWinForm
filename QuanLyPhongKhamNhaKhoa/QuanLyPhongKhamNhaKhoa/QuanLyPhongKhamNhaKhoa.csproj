@@ -78,6 +78,12 @@
     <Compile Include="Entity\Service_Treatment.cs" />
     <Compile Include="Entity\Treatment.cs" />
     <Compile Include="Entity\User.cs" />
+    <Compile Include="FormXuLyLichHen\FormChonDichVu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormXuLyLichHen\FormChonDichVu.Designer.cs">
+      <DependentUpon>FormChonDichVu.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormXuLyLichHen\FormThemLichHen.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -153,6 +159,12 @@
     <Compile Include="User Control\UC_PatientAppointment.designer.cs">
       <DependentUpon>UC_PatientAppointment.cs</DependentUpon>
     </Compile>
+    <Compile Include="User Control\UC_ServiceAppointment.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="User Control\UC_ServiceAppointment.Designer.cs">
+      <DependentUpon>UC_ServiceAppointment.cs</DependentUpon>
+    </Compile>
     <Compile Include="User Control\UC_TuyChonTaiKhoan.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -163,6 +175,9 @@
     <Compile Include="Validation\Validation.cs" />
     <EmbeddedResource Include="AccountInfoForm.resx">
       <DependentUpon>AccountInfoForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormXuLyLichHen\FormChonDichVu.resx">
+      <DependentUpon>FormChonDichVu.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormXuLyLichHen\FormThemLichHen.resx">
       <DependentUpon>FormThemLichHen.cs</DependentUpon>
@@ -210,6 +225,9 @@
     <EmbeddedResource Include="User Control\UC_PatientAppointment.resx">
       <DependentUpon>UC_PatientAppointment.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="User Control\UC_ServiceAppointment.resx">
+      <DependentUpon>UC_ServiceAppointment.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="User Control\UC_TuyChonTaiKhoan.resx">
       <DependentUpon>UC_TuyChonTaiKhoan.cs</DependentUpon>
     </EmbeddedResource>
@@ -251,6 +269,7 @@
     <Content Include="image\search.png" />
     <Content Include="image\user.jpg" />
     <Content Include="image\x.png" />
+    <None Include="Resources\rang.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

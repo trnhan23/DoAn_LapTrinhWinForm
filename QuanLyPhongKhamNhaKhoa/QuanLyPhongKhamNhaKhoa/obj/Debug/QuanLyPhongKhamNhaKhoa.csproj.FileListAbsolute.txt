@@ -67,3 +67,4 @@ E:\SPKT\NAM3_HK2\WinForm\DoAn_LapTrinhWinForm\QuanLyPhongKhamNhaKhoa\QuanLyPhong
 E:\SPKT\NAM3_HK2\WinForm\DoAn_LapTrinhWinForm\QuanLyPhongKhamNhaKhoa\QuanLyPhongKhamNhaKhoa\obj\Debug\QuanLyPhongKhamNhaKhoa.Test.resources
 E:\SPKT\NAM3_HK2\WinForm\DoAn_LapTrinhWinForm\QuanLyPhongKhamNhaKhoa\QuanLyPhongKhamNhaKhoa\obj\Debug\QuanLyPhongKhamNhaKhoa.User_Control.UC_PatientAppointment.resources
 E:\SPKT\NAM3_HK2\WinForm\DoAn_LapTrinhWinForm\QuanLyPhongKhamNhaKhoa\QuanLyPhongKhamNhaKhoa\obj\Debug\QuanLyPhongKhamNhaKhoa.FormXuLyLichHen.FormThemLichHen.resources
+E:\SPKT\NAM3_HK2\WinForm\DoAn_LapTrinhWinForm\QuanLyPhongKhamNhaKhoa\QuanLyPhongKhamNhaKhoa\obj\Debug\QuanLyPhongKhamNhaKhoa.FormXuLyLichHen.FormChonDichVu.resources

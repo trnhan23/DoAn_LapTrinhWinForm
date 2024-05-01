@@ -424,5 +424,30 @@ namespace QuanLyPhongKhamNhaKhoa.User_Control
                 picBoxImage.Image = Image.FromFile(opf.FileName);
             }
         }
+
+        private void txtHoTen_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsLetter(e.KeyChar) && e.KeyChar != ' ')
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void txtCCCD_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (txtCCCD.Text.Length >= 12 && e.KeyChar != (char)Keys.Back || !char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void txtSDT_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (txtSDT.Text.Length >= 10 && e.KeyChar != (char)Keys.Back ||
+            (!char.IsControl(e.KeyChar) && (!char.IsDigit(e.KeyChar) || (txtSDT.Text.Length == 0 && e.KeyChar != '0'))))
+            {
+                e.Handled = true;
+            }
+        }
     }
 }

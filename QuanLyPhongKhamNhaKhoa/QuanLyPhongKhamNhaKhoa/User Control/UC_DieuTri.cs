@@ -43,6 +43,8 @@ namespace QuanLyPhongKhamNhaKhoa.User_Control
             }
         }
 
+
+        // chỉ được nhập chữ
         private void txtTenDichVu_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!char.IsControl(e.KeyChar) && !char.IsLetter(e.KeyChar))
@@ -51,6 +53,7 @@ namespace QuanLyPhongKhamNhaKhoa.User_Control
             }
         }
 
+        //chỉ được nhập số
         private void txtChiPhiDichVu_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))

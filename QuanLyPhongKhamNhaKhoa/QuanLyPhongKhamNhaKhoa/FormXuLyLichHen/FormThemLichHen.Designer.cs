@@ -32,29 +32,29 @@
             this.dateTPKLichHen = new System.Windows.Forms.DateTimePicker();
             this.panel1 = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
+            this.pBExit = new System.Windows.Forms.PictureBox();
             this.txtCCCD = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
+            this.lblThemDichVu = new System.Windows.Forms.Label();
             this.pBThemDichVu = new System.Windows.Forms.PictureBox();
             this.pBSearchPatient = new System.Windows.Forms.PictureBox();
-            this.pBExit = new System.Windows.Forms.PictureBox();
             this.label3 = new System.Windows.Forms.Label();
             this.lblTenNhaSi = new System.Windows.Forms.Label();
             this.gBThongTinBenhNhan = new System.Windows.Forms.GroupBox();
+            this.btnThemBN = new System.Windows.Forms.Button();
+            this.txtSDTBN = new System.Windows.Forms.TextBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.txtTenBN = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.cbTime = new System.Windows.Forms.ComboBox();
             this.panelDichVu = new System.Windows.Forms.Panel();
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnLuu = new System.Windows.Forms.Button();
-            this.txtTenBN = new System.Windows.Forms.TextBox();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
-            this.txtSDTBN = new System.Windows.Forms.TextBox();
-            this.btnThemBN = new System.Windows.Forms.Button();
             this.label8 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pBExit)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pBThemDichVu)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pBSearchPatient)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pBExit)).BeginInit();
             this.gBThongTinBenhNhan.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -79,6 +79,14 @@
             this.label1.ForeColor = System.Drawing.Color.Gold;
             this.label1.Name = "label1";
             // 
+            // pBExit
+            // 
+            this.pBExit.Image = global::QuanLyPhongKhamNhaKhoa.Properties.Resources.x;
+            resources.ApplyResources(this.pBExit, "pBExit");
+            this.pBExit.Name = "pBExit";
+            this.pBExit.TabStop = false;
+            this.pBExit.Click += new System.EventHandler(this.pBExit_Click);
+            // 
             // txtCCCD
             // 
             resources.ApplyResources(this.txtCCCD, "txtCCCD");
@@ -86,11 +94,12 @@
             this.txtCCCD.TextChanged += new System.EventHandler(this.txtCCCD_TextChanged);
             this.txtCCCD.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCCCD_KeyPress);
             // 
-            // label2
+            // lblThemDichVu
             // 
-            resources.ApplyResources(this.label2, "label2");
-            this.label2.ForeColor = System.Drawing.Color.Gold;
-            this.label2.Name = "label2";
+            resources.ApplyResources(this.lblThemDichVu, "lblThemDichVu");
+            this.lblThemDichVu.ForeColor = System.Drawing.Color.Gold;
+            this.lblThemDichVu.Name = "lblThemDichVu";
+            this.lblThemDichVu.Click += new System.EventHandler(this.lblThemDichVu_Click);
             // 
             // pBThemDichVu
             // 
@@ -99,6 +108,7 @@
             resources.ApplyResources(this.pBThemDichVu, "pBThemDichVu");
             this.pBThemDichVu.Name = "pBThemDichVu";
             this.pBThemDichVu.TabStop = false;
+            this.pBThemDichVu.Click += new System.EventHandler(this.pBThemDichVu_Click);
             // 
             // pBSearchPatient
             // 
@@ -108,14 +118,6 @@
             this.pBSearchPatient.Name = "pBSearchPatient";
             this.pBSearchPatient.TabStop = false;
             this.pBSearchPatient.Click += new System.EventHandler(this.pBSearchPatient_Click);
-            // 
-            // pBExit
-            // 
-            this.pBExit.Image = global::QuanLyPhongKhamNhaKhoa.Properties.Resources.x;
-            resources.ApplyResources(this.pBExit, "pBExit");
-            this.pBExit.Name = "pBExit";
-            this.pBExit.TabStop = false;
-            this.pBExit.Click += new System.EventHandler(this.pBExit_Click);
             // 
             // label3
             // 
@@ -140,6 +142,39 @@
             this.gBThongTinBenhNhan.ForeColor = System.Drawing.Color.Gold;
             this.gBThongTinBenhNhan.Name = "gBThongTinBenhNhan";
             this.gBThongTinBenhNhan.TabStop = false;
+            // 
+            // btnThemBN
+            // 
+            this.btnThemBN.BackColor = System.Drawing.Color.Gold;
+            resources.ApplyResources(this.btnThemBN, "btnThemBN");
+            this.btnThemBN.ForeColor = System.Drawing.Color.SteelBlue;
+            this.btnThemBN.Name = "btnThemBN";
+            this.btnThemBN.UseVisualStyleBackColor = false;
+            this.btnThemBN.Click += new System.EventHandler(this.btnThemBN_Click);
+            // 
+            // txtSDTBN
+            // 
+            resources.ApplyResources(this.txtSDTBN, "txtSDTBN");
+            this.txtSDTBN.Name = "txtSDTBN";
+            this.txtSDTBN.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtSDTBN_KeyPress);
+            // 
+            // label7
+            // 
+            resources.ApplyResources(this.label7, "label7");
+            this.label7.ForeColor = System.Drawing.Color.Gold;
+            this.label7.Name = "label7";
+            // 
+            // label5
+            // 
+            resources.ApplyResources(this.label5, "label5");
+            this.label5.ForeColor = System.Drawing.Color.Gold;
+            this.label5.Name = "label5";
+            // 
+            // txtTenBN
+            // 
+            resources.ApplyResources(this.txtTenBN, "txtTenBN");
+            this.txtTenBN.Name = "txtTenBN";
+            this.txtTenBN.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtTenBN_KeyPress);
             // 
             // label4
             // 
@@ -175,39 +210,6 @@
             this.btnLuu.Name = "btnLuu";
             this.btnLuu.UseVisualStyleBackColor = false;
             // 
-            // txtTenBN
-            // 
-            resources.ApplyResources(this.txtTenBN, "txtTenBN");
-            this.txtTenBN.Name = "txtTenBN";
-            this.txtTenBN.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtTenBN_KeyPress);
-            // 
-            // label5
-            // 
-            resources.ApplyResources(this.label5, "label5");
-            this.label5.ForeColor = System.Drawing.Color.Gold;
-            this.label5.Name = "label5";
-            // 
-            // label7
-            // 
-            resources.ApplyResources(this.label7, "label7");
-            this.label7.ForeColor = System.Drawing.Color.Gold;
-            this.label7.Name = "label7";
-            // 
-            // txtSDTBN
-            // 
-            resources.ApplyResources(this.txtSDTBN, "txtSDTBN");
-            this.txtSDTBN.Name = "txtSDTBN";
-            this.txtSDTBN.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtSDTBN_KeyPress);
-            // 
-            // btnThemBN
-            // 
-            this.btnThemBN.BackColor = System.Drawing.Color.Gold;
-            resources.ApplyResources(this.btnThemBN, "btnThemBN");
-            this.btnThemBN.ForeColor = System.Drawing.Color.SteelBlue;
-            this.btnThemBN.Name = "btnThemBN";
-            this.btnThemBN.UseVisualStyleBackColor = false;
-            this.btnThemBN.Click += new System.EventHandler(this.btnThemBN_Click);
-            // 
             // label8
             // 
             resources.ApplyResources(this.label8, "label8");
@@ -228,7 +230,7 @@
             this.Controls.Add(this.gBThongTinBenhNhan);
             this.Controls.Add(this.lblTenNhaSi);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.label2);
+            this.Controls.Add(this.lblThemDichVu);
             this.Controls.Add(this.pBThemDichVu);
             this.Controls.Add(this.pBSearchPatient);
             this.Controls.Add(this.txtCCCD);
@@ -241,9 +243,9 @@
             this.Load += new System.EventHandler(this.FormThemLichHen_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pBExit)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pBThemDichVu)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pBSearchPatient)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pBExit)).EndInit();
             this.gBThongTinBenhNhan.ResumeLayout(false);
             this.gBThongTinBenhNhan.PerformLayout();
             this.ResumeLayout(false);
@@ -260,7 +262,7 @@
         private System.Windows.Forms.TextBox txtCCCD;
         private System.Windows.Forms.PictureBox pBSearchPatient;
         private System.Windows.Forms.PictureBox pBThemDichVu;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label lblThemDichVu;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label lblTenNhaSi;
         private System.Windows.Forms.GroupBox gBThongTinBenhNhan;
